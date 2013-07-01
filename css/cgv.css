@@ -1,0 +1,37 @@
+/* 
+    Document   : cgv
+    Created on : 7 oct. 2010, 15:00:27
+    Author     : GUILLAUME
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#cat_wrapper {
+
+}
+
+#cat_wrapper {
+    margin-bottom: 50px;
+}
+
+#cat_wrapper p {
+    font-family: Arial;    
+}
+
+.titre {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #9b0f21;
+}
+
+.soustitre {
+    font-size: 13px;
+    font-weight: bold;
+    padding-left: 50px;
+    margin-top: 25px;
+}
+
+.corps {
+    font-size: 11px;
+}

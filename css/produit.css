@@ -1,0 +1,232 @@
+/* ----------------------
+ * Override from main.css
+ * ----------------------*/
+
+#bottom_wrapper {
+    position:absolute;
+    top:753px;
+    width:986px;
+}
+
+*+html #bottom_wrapper {
+	position: static;
+}
+
+/* -------------
+ * Fiche produit
+ * -------------*/
+
+#content_wrapper {
+    font-family: Verdana;
+    color: #9b0f21;
+    margin: 0;
+}
+
+#ariane {
+    font-size: 12px;
+}
+
+#titre_produit {
+    margin-top: 5px;
+    font-size: 34px;
+}
+
+#img_produit {
+    position: relative;
+    float: left;
+    height: 400px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#img_produit > img {
+    cursor: pointer;
+}
+
+.zoom {
+    background-image: url("../images/miniloupe.png");
+    height: 28px;
+    left: 579px;
+    position: absolute;
+    top: 365px;
+    width: 32px;
+}
+
+#descriptif_produit {
+    font-family: Arial;
+    width: 100%;
+}
+
+#tarif {
+    font-family: Verdana;
+    font-size: 29px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+#tarif > span {
+    font-size: 15px;
+    color: #9b0f21;
+}
+
+.ancien_tarif, .ancien_tarif_liste {
+    text-decoration: line-through;
+    margin: 0;
+}
+
+.ancien_tarif {
+    font-size: 16px;    
+}
+
+.ancien_tarif span {
+    text-decoration: none;
+    color: red;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#listeTarif {
+    font-size: 13px;
+}
+
+#listeTarif > img {
+    margin-left: 10px;
+    vertical-align: bottom;
+    cursor: pointer;
+}
+
+#addToCart {
+    font-size: 13px;
+    color: #5f8821;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+#offre {
+    font-size: 13px;
+    color: black;
+}
+
+#options_produit {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+#couleurs {
+    margin-bottom: 0px;
+}
+
+#couleurs > span {
+    width: 20px;
+    height: 20px;
+    border: solid 1px #3d6506;
+    display: inline-block;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
+#comment {
+    width: 450px;
+}
+
+#illustration {
+    text-align: left;
+    margin: -8px 0 0 0;
+}
+
+.help {
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+.help_caddie {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* ---------
+ * Transport
+ * ---------*/
+
+#transport_wrapper {
+    background-image: url(../images/produits/img_transport.png);
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 232px;
+    margin-top: 47px;
+}
+
+#transport {
+    padding-top: 19px;
+}
+
+/* ---------------
+ * Mini catégories
+ * ---------------*/
+
+#minicat_wrapper {
+}
+
+.minicat {
+    background-image: url(../images/minicat/fond.png);
+    width: 130px;
+    height: 131px;
+    display: inline;
+    float: left;
+    margin-right: 10px;
+}
+
+.minicat_title {
+    background-repeat: no-repeat;
+}
+
+.minicat_image {
+    width: 128px;
+    height: 109px;
+    margin: 1px 0 1px 1px;
+}
+
+#title_plantes {
+    background-image: url(../images/minicat/minicat_plantes.png);
+}
+
+#img_plantes {
+    background-image: url(../images/minicat/minicatimg_plantes.png);
+}
+
+#title_fleurs {
+    background-image: url(../images/minicat/minicat_fleurs.png);
+}
+
+#img_fleurs {
+    background-image: url(../images/minicat/minicatimg_fleurs.png);
+}
+
+#title_arbres {
+    background-image: url(../images/minicat/minicat_arbres.png);
+}
+
+#img_arbres {
+    background-image: url(../images/minicat/minicatimg_arbres.png);
+}
+
+#title_plantesbac {
+    background-image: url(../images/minicat/minicat_plantesbac.png);
+}
+
+#img_plantesbac {
+    background-image: url(../images/minicat/minicatimg_plantesbac.png);
+}
+
+/* --------------
+ * Liste produits
+ * --------------*/
+
+#liste {
+    background-image: url(../images/produits/liste_produits.png);
+    width: 139px;
+    height: 23px;
+    margin-top: 22px;
+    background-position: 10px 0;
+    background-repeat:no-repeat;
+}

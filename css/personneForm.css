@@ -1,0 +1,40 @@
+/* 
+    Document   : personneForm.css
+    Created on : 15 juil. 2010, 13:58:23
+    Author     : GUILLAUME
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+table {
+    width: 742px;
+    border-collapse: collapse;
+}
+
+#tdId {
+    width: 75px;
+}
+
+#tdNom {
+    width: 400px;
+}
+
+#tdOp {
+    width: 150px;
+}
+
+.paire {
+    background-color: #CCFFCC;
+}
+
+.impaire {
+    background-color: white;
+}
+
+#errors {
+    color: red;
+}
+
+#errors > span {
+    display: block;
+}

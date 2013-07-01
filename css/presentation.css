@@ -1,0 +1,26 @@
+/* 
+    Document   : presentation
+    Created on : 7 oct. 2010, 15:00:27
+    Author     : GUILLAUME
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+p, li {
+    font-family: Arial;    
+}
+
+.titre {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #9b0f21;
+}
+
+.corps, li {
+    font-size: 13px;
+}
+
+.gras {
+    font-weight: bold;
+}

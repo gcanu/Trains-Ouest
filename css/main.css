@@ -1,0 +1,367 @@
+body {
+    background-color: black;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+}
+
+#bg {
+    background-image: url(../images/fond.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed; 
+    width: 1280px;
+    margin: 0 auto auto auto;
+    padding: 34px 0;
+
+}
+
+#wrapper_top {
+    position: relative;
+    background-image: url(../images/fond_wrapper_top.png);
+    width: 1040px;
+    height: 18px;
+    left: 120px;
+}
+
+#wrapper {
+    position: relative;
+    background-image: url(../images/fond_wrapper.png);
+    width: 988px;
+    left: 120px;
+    padding: 28px;
+}
+
+#wrapper_bottom {
+    position: relative;
+    background-image: url(../images/fond_wrapper_bottom.png);
+    width: 1040px;
+    height: 18px;
+    left: 120px;
+}
+
+#banner {
+    position: relative;
+    background-image: url(../images/banniere.png);
+    width: 667px;
+    height: 160px;
+    top: -16px;
+}
+
+#navigh {
+    position: absolute;    
+    width: 294px;
+    height: 34px;
+    top: -10px;
+    left: 738px;
+}
+
+#navigh1 {
+    background-image: url(../images/navigh-01.png);
+    width: 150px;
+    height: 34px;
+    float: left;
+}
+
+#navigh2 {
+    background-image: url(../images/navigh-02.png);
+    width: 144px;
+    height: 34px;
+    float: left;
+}
+
+#panier {
+    position: absolute;
+    background-image: url(../images/fond_panier.png);
+    width: 306px;
+    height: 131px;
+    top: 41px;
+    left: 710px;
+}
+
+#panier > span {
+    position: absolute;
+    color: white;
+    font-family: Arial;
+    font-size: 18px;
+    top: 24px;
+    left: 25px;
+}
+
+#panier-aide {
+    background: url(../images/aide.png) 0 0 no-repeat;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 42px;
+    left: 284px;
+    cursor: pointer;
+}
+
+#panier-aide-content {
+    border: 1px solid #7ab91f;
+    background-color: #E4FFBE;
+    font: normal 12px Verdana;
+    position: absolute;
+    width: 240px;
+    top: 123px;
+    left: 1018px;
+    padding: 5px;
+}
+
+#panier-aide-content h2 {
+    font-size: 13px;
+}
+
+#panier-aide-content .close {
+    background: url(../images/fermer_petit.png) 0 0 no-repeat;
+    width: 12px;
+    height: 12px;
+    top: 3px;
+    left: 235px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.prod_color {
+    width: 8px;
+    height: 8px;
+    margin-top: 4px;
+}
+
+#liste_article {
+    position: absolute;
+    background-image: url(../images/liste_art.png);
+    width: 274px;
+    height: 68px;
+    top: 50px;
+    left: 13px;
+    padding-left: 5px;
+}
+
+.p_remove {
+    margin-right: 3px;
+    position: relative;
+    top: -2px;
+}
+
+.p_designation, .p_qte, .p_pttc, #liste_article>span {
+    position: absolute;
+    color: white;
+    font-family: Arial;
+    font-size: 12px;
+}
+
+.p_designation {
+    margin-left: 11px;
+}
+
+.p_qte {
+    left: 160px;
+}
+
+.p_pttc {
+    left: 220px;
+}
+
+/* --------------
+ * Colonne gauche
+ * --------------*/
+
+.columns {
+    width: 235px;
+    margin-bottom: 20px;
+}
+
+#left_column {
+    float: left;
+}
+
+#right_column {
+    left: 779px;
+}
+
+/* -------
+ * Contenu
+ * -------*/
+#content_wrapper {
+    float: right;
+    width: 739px;
+}
+
+.title {
+    background-image: url(../images/title.png);
+    color: white;
+    font-family: Century Gothic, Arial, Times;
+    font-size: 28px;
+    height: 36px;
+    width: 719px;
+    margin-bottom: 10px;
+    padding: 6px 10px;
+}
+
+.info {
+    background-color: white;
+    border: 2px solid #CC0000;
+    padding: 3px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.info, .info img {
+    max-height: 582px;
+    max-width: 729px;
+}
+
+/* ------------------------
+ * Description des éléments
+ * ------------------------*/
+
+.text_element {
+}
+
+.element_title {
+    height: 30px;
+    width: 100%;
+}
+
+.element_subtitle {
+    margin-top: 14px;
+    margin-left: 50px;
+    padding-left: 13px;
+    font-family: Arial;
+    font-size: 18px;
+    color: #5f8821;
+    border-left: 1px solid #5f8821;
+}
+
+.element_content {
+    color: black;
+    padding: 22px 5px 5px 5px;
+    font-family: Arial;
+    font-size: 13px;
+}
+
+.element_link {
+    text-align: right;
+    color: #3d6506;
+}
+
+.right_align {
+    text-align: right;
+    background-position: top right;
+}
+
+.right_border {
+    border-left: 0;
+    border-right: 1px solid #5f8821;
+    margin-left: 0;
+    margin-right: 50px;
+    padding-left: 0;
+    padding-right: 13px;
+}
+
+#telephone_element {
+    background-image:  url(../images/telephone.png);
+    background-repeat: no-repeat;
+    height: 92px;
+}
+
+#telephone_element {
+    width: 232px;
+    margin-bottom: 30px;
+}
+
+#actualites {
+    margin-bottom: 30px;
+}
+
+/* ----------------
+ * Authentification
+ * ----------------*/
+
+#authentification {
+    
+}
+
+#authentification label {
+    font-family: Arial;
+    font-size: 14   px;
+}
+
+#authentification input {
+    background-color: white;
+    border: 1px solid #9b0f21;
+    height: 24px;
+    border-radius: 3px;
+}
+
+/* ------------------
+ * Champ de recherche
+ * ------------------*/
+
+#recherche {
+    margin-top: 27px;
+    height: 51px;
+    background-image: url(../images/recherche.png);
+    background-position: 10px 0px;
+    background-repeat: no-repeat;
+}
+
+#ch_rech {
+    background-image: url(../images/ch_rech.png);
+    background-color: transparent;
+    border-width: 0px;
+    height: 25px;
+    width: 191px;
+    position: relative;
+    top: 18px;
+}
+
+#b_rech {
+    position: relative;
+    background-image: url(../images/loupe.png);
+    background-color: transparent;
+    width: 29px;
+    height: 30px;
+    border: 0;
+    top: 21px;
+}
+
+/* --------------
+ * Bas de la page
+ * --------------*/
+
+#bottom_wrapper {
+    top: 705px;
+    width: 986px;
+}
+
+/* ------
+ * Spacer
+ * ------*/
+.spacer {
+    width: 0;
+    height: 0;
+    clear: both;
+    border: 0;
+}
+
+/* ------------------------------------------
+ * Définitions des éléments communs aux pages
+ * ------------------------------------------*/
+
+h1 {
+    margin-top: 0;
+    font: 28px Verdana;
+    color: #9b0f21;    
+}

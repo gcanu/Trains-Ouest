@@ -1,0 +1,24 @@
+/*
+    Document   : commandeForm.css
+    Created on : 18 novembre 2011, 22:38:00
+    Author     : gcanu
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#errors {
+    color: red;
+}
+
+#messages {
+    color: green;
+}
+
+#errors > span,
+#message > span {
+    display: block;
+}
+
+#tdPromo {
+    width: 100px;
+}

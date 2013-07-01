@@ -1,0 +1,7 @@
+*+html .nouveaute {
+    display: inline;
+}
+
+.nouveaute {
+    display: inline-block;
+}

@@ -1,0 +1,171 @@
+/* 
+    Document   : commande
+    Created on : 28 oct. 2010, 11:52:53
+    Author     : GUILLAUME
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* ----------------------
+ * Override from main.css
+ * ----------------------*/
+
+table {
+    border-collapse: collapse;
+    font: 12px Arial;
+    width: 730px;
+}
+
+th, .firstColumn {
+    background-color: #9b0f21;
+    color: white;
+    font: normal 13px Georgia;
+    border-color: #9b0f21;
+    border-bottom: 1px solid #9b0f21;
+}
+
+table {
+    border: 1px solid #9b0f21;
+}
+
+td, th {
+    padding: 4px;
+    text-align: center;
+}
+
+#total {
+    float: right;
+    margin-top: 10px;
+    width: auto;
+}
+
+#total td {
+    font-size: 13px;
+    width: 85px;
+}
+
+#total td.firstColumn {
+    font-weight: bold;
+    border-bottom: 0;
+    width: 150px;
+}
+
+/* Styles spécifiques pour les renseignements */
+.comments {
+    margin: 40px 0 20px 0;
+    overflow: hidden;
+}
+
+.title {
+    font: bold 18px Georgia;
+    color: white;
+    cursor: pointer;
+}
+
+.comments .inputs {
+    font: normal 12px Verdana;
+    margin: 5px 0;
+}
+
+.comments .inputs p span {
+    padding: 4px 0;
+    font-size: 13px;
+}
+
+.delete {
+    font-size: 12px;
+    margin-left: 30px;
+    color: #636163;
+    cursor: pointer;
+}
+
+.help {
+    font: normal 12px verdana;
+    font-style: italic;
+    color: gray;
+    margin-left: 0;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    padding: 5px 0;
+}
+
+li span {
+    display: inline-block;
+    font: 13px Verdana;
+    padding: 3px 0; 
+}
+
+input {
+    width: 300px;
+    border: solid 1px #9b0f21;
+    background-color: white;
+    font: 13px Verdana;
+    padding: 2px;
+}
+
+input.tf_cp {
+    width: 150px;
+}
+
+.submit {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.submit input {
+    border: 1px solid #9b0f21;
+    background-color: white;
+    height: 26px;
+    width: 75px;
+}
+
+/* Validations des CGV */
+#cgv-acceptance {
+    font: normal 14px Georgia;
+    text-align: center;
+}
+
+#cgv-acceptance a, #cgv-acceptance a:visited {
+    color: blue;
+}
+
+#validation-button a {
+    background-image: url(../images/bouton.png);
+    width: 75px;
+    height: 26px;
+    display: block;
+    margin: auto;
+}
+
+#cgv-cb {
+    width: auto;
+}
+
+/* Actions validation */
+.actions {
+    font: bold 13px Georgia;
+    text-align: left;
+    margin: 0;
+}
+
+.actions a {
+    text-decoration: none;
+    color: black;
+}
+
+.actions a:hover {
+    color: #9b0f21;
+    text-decoration: underline;
+}
+
+#errors {
+    color: red;
+    font: normal 12px Verdana;
+}
+
+#errors > span {
+    display: block;
+}

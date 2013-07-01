@@ -1,0 +1,23 @@
+/* 
+    Document   : galerie
+    Created on : 7 oct. 2010, 15:00:27
+    Author     : GUILLAUME
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+*+html .gallery-separator {
+    display: inline;
+}
+
+.gallery-separator {
+    display: inline-block;
+}
+
+.gallery-line-2 .gallery-separator {
+    width: 4px;
+}
+
+.gallery-line-3 .gallery-separator {
+    
+}

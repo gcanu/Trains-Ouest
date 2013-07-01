@@ -1,0 +1,156 @@
+/* 
+    Document   : produitForm.css
+    Created on : 15 juil. 2010, 13:58:23
+    Author     : GUILLAUME
+    Description:
+*/
+
+table {
+    border-collapse: collapse;
+    width: 803px;
+    font-family: Arial;
+    font-size: 12px;
+}
+
+textarea {
+    font-family: Arial;
+    font-size: 12px;
+    height: 10em;
+    width: 400px;
+}
+
+#manager {
+    width: auto;
+}
+
+table img {
+    vertical-align: middle;
+}
+
+.firstColumn {
+    width: 125px;
+}
+
+.secondColumn {
+    width: 678px;
+}
+
+#tdRef {
+    width: 100px;
+}
+
+#tdCat {
+    width: 75px;
+}
+
+#tdNom {
+    width: 300px;
+}
+
+#tdOp {
+    width: 150px;
+}
+
+.paire {
+    background-color: #CCFFCC;
+}
+
+.impaire {
+    background-color: white;
+}
+
+#errors {
+    color: red;
+}
+
+#errors > span {
+    display: block;
+}
+
+#bottom_wrapper {
+    display: none;
+}
+
+.couleurs {
+    background-color: #e4ffbe;
+}
+
+.tailles {
+    padding-top: 10px;
+    background-color: #e4ffbe;
+}
+
+.spacer {
+    height: 10px;
+}
+
+.couleurs td {
+    border: 0;
+}
+
+.codesCouleur {
+    display: none;
+}
+
+.nomCouleur {
+    width: 120px;
+}
+
+.refCouleur {
+    width: 50px;
+}
+
+.imagesCouleur {
+    width: 50px;
+}
+
+input.filesCouleur {
+    width: 230px;
+}
+
+.remove {
+    cursor: pointer;    
+}
+
+.remove img {
+}
+
+.add {
+    cursor: pointer;    
+}
+
+.add img {
+    margin: 8px 0 8px 16px;
+}
+
+.contentFieldHelp {
+    font-size: 10px;
+    font-style: italic;
+}
+
+/* 
+    On cache la barre de navigation droite qui ici ne nous sert à rien
+    On réduit aussi la barre gauche
+    Surcharge de main.css
+*/
+#right_column {
+    width: 0px;
+}
+
+/*
+    Pager
+*/
+
+.pager {
+    font-family: arial;
+    font-size: 13px;
+}
+
+.pager a:link, .pager a:visited {
+    color: blue;
+}
+
+.currentPage {
+    color: red;
+    font-weight: bold;
+}

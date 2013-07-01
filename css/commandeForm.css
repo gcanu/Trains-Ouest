@@ -1,0 +1,44 @@
+/*
+    Document   : commandeForm.css
+    Created on : 20 avril 2011, 14:17:00
+    Author     : gcanu
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+table {
+    border-collapse: collapse;
+    width: 742px;
+}
+
+#tdDate {
+    width: 150px;
+}
+
+#tdId {
+    width: 150px;
+}
+
+#tdUser {
+    width: 175px;
+}
+
+#tdOp {
+    width: 150px;
+}
+
+.paire {
+    background-color: #CCFFCC;
+}
+
+.impaire {
+    background-color: white;
+}
+
+#errors {
+    color: red;
+}
+
+#errors > span {
+    display: block;
+}

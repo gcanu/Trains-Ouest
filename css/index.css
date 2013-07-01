@@ -1,0 +1,82 @@
+#content_wrapper {
+    margin: 0;
+}
+
+/* ----------
+ * Catégories
+ * ----------*/
+
+#cat_wrapper {
+    margin-bottom: 20px;
+}
+
+.catv {
+    width: 235px;
+    height: 28px;
+    margin-bottom: 5px;
+}
+
+.accueil {
+    background-image: url(../images/catv-1.png);
+}
+
+.presentation {
+    background-image: url(../images/catv-2.png);
+}
+
+.boutique {
+    background-image: url(../images/catv-3.png);
+}
+
+.commander {
+    background-image: url(../images/catv-4.png);
+}
+
+.contact {
+    background-image: url(../images/catv-5.png);
+}
+
+.cgv {
+    background-image: url(../images/catv-6.png);
+}
+
+.cat {
+    position: relative;
+    margin-bottom: 14px;
+    width: 235px;
+}
+
+.locomotives {
+    background-image: url(../images/cat-1.png);
+    height: 151px;
+}
+
+.autorails {
+    background-image: url(../images/cat-5.png);
+    height: 150px;
+}
+
+.voyageurs {
+    background-image: url(../images/cat-2.png);
+    height: 154px;
+}
+
+.marchandises {
+    background-image: url(../images/cat-3.png);
+    height: 152px;
+}
+
+.accessoires {
+    background-image: url(../images/cat-4.png);
+    height: 151px;
+}
+
+.decors {
+    background-image: url(../images/cat-6.png);
+    height: 150px;
+}
+
+.vehicules {
+    background-image: url(../images/cat-7.png);
+    height: 150px;
+}
