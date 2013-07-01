@@ -10,6 +10,7 @@ class Produit {
     var $idProduit;
     var $refProduit;
     var $nom;
+    var $marque;
     var $tarif;
     var $nouveaute;
     var $etat;
@@ -32,6 +33,7 @@ class Produit {
             $this->idProduit = "";
             $this->refProduit = "";
             $this->nom = "";
+            $this->marque = "";
             $this->tarif = 0;
             $this->nouveaute = 1;
             $this->etat = 0;
@@ -48,6 +50,7 @@ class Produit {
             $this->idProduit = $tab['idProduit'];
             $this->refProduit = $tab['refProduit'];
             $this->nom = $tab['nom'];
+            $this->marque = $tab['marque'];
             $this->tarif = $tab['tarif'];
             if($tab['new'] == "new")
                 $this->nouveaute = true;
@@ -65,12 +68,13 @@ class Produit {
         elseif ($id != "" && count($tab) == 0) {
             $db = new BD_connexion();
             $link = $db->getConnexion();
-            $query = "SELECT * FROM produits WHERE idProduit = {$id}";
+            $query = "SELECT * FROM train_produits WHERE idProduit = {$id}";
             $result = mysql_query($query, $link) or die(mysql_error($link));
 
             $this->idProduit = mysql_result($result, 0, 'idProduit');
             $this->refProduit = mysql_result($result, 0, 'refProduit');
             $this->nom = mysql_result($result, 0, 'nom');
+            $this->marque = mysql_result($result, 0, 'marque');
             $this->tarif = mysql_result($result, 0, 'tarif');
             
             // verifier si la base retourne bien un type booléen
@@ -83,7 +87,7 @@ class Produit {
             $this->idCat = mysql_result($result, 0, 'idCat');
             
             // recherche d'une éventuelle promo sur le produit
-            $query3 = "SELECT * FROM promotions WHERE idProduit = {$this->idProduit}";
+            $query3 = "SELECT * FROM train_promotions WHERE idProduit = {$this->idProduit}";
             $result3 = mysql_query($query3, $link) or die(mysql_error($link));
             
             if(mysql_num_rows($result3) > 0) {
@@ -101,6 +105,7 @@ class Produit {
             $this->idProduit = $id;
             $this->refProduit = $tab['refProduit'];
             $this->nom = $tab['nom'];
+            $this->marque = $tab['marque'];
             $this->tarif = $tab['tarif'];
             
             if($tab['new'] == "new")
@@ -148,6 +153,31 @@ class Produit {
         $html .= "</tr>";
         
         $html .= "<tr>";
+        $html .= "<td>marque</td>";
+        $html .= "<td>\n";
+        $html .= "<select name=\"marque\">\n";
+        
+        $db = new BD_connexion();
+        $link = $db->getConnexion();
+        $query = "SELECT * FROM marques"; 
+        $result = mysql_query($query, $link) or die(mysql_error($link));
+        
+        $html .= "<option value=\"0\"></option>";
+        
+        while ($row = mysql_fetch_array($result)) {
+            if($row["idMarque"] == $this->marque)
+                $checked = " selected=\"selected\"";
+            else
+                $checked = "";
+            
+            $html .= "<option value=\"".$row["idMarque"]."\"".$checked.">".utf8_encode($row["marque"])."</option>";
+        }
+        
+        $html .= "</select>"; 
+        $html .= "</td>\n";
+        $html .= "</tr>";
+        
+        $html .= "<tr>";
         $html .= "<td>tarif</td>";
         $html .= "<td><input type=\"text\" name=\"tarif\" value=\"{$this->tarif}\" />\n";
         $html .= "</tr>";
@@ -169,7 +199,7 @@ class Produit {
         
         $db = new BD_connexion();
         $link = $db->getConnexion();
-        $query = "SELECT * FROM etats"; 
+        $query = "SELECT * FROM train_etats"; 
         $result = mysql_query($query, $link) or die(mysql_error($link));
         
         $html .= "<option value=\"0\"></option>";
@@ -181,7 +211,7 @@ class Produit {
             
             $html .= "<option value=\"".$row["idEtat"]."\"".$checked.">".utf8_encode($row["intitule"])."</option>";
         }
-        $html .= "<select>"; 
+        $html .= "</select>"; 
         $html .= "</td>";
         $html .= "</tr>";
         
@@ -226,7 +256,7 @@ class Produit {
 
 
         // on initialise les catégories
-        $query = "SELECT * FROM categories WHERE idCatMere IS NULL";
+        $query = "SELECT * FROM train_categories WHERE idCatMere IS NULL";
         $result = mysql_query($query, $link) or die(mysql_error($link));
         $db->closeConnexion();
 
@@ -234,7 +264,7 @@ class Produit {
         while ($ligne = mysql_fetch_array($result)) {
             $html .= "<option value=\"0\"></option>";
 
-            $requete = "SELECT * FROM categories WHERE idCatMere = {$ligne['idCat']}";
+            $requete = "SELECT * FROM train_categories WHERE idCatMere = {$ligne['idCat']}";
             $db = new BD_connexion();
             $link = $db->getConnexion();
             $result2 = mysql_query($requete, $link) or die(mysql_error($link));
@@ -283,9 +313,10 @@ class Produit {
             $this->img_zoom = $this->traiteImage($_FILES['img_zoom'], 'images/uploaded/zoom/');
 
             if ($this->idProduit == "") { //nouvel enregistrement
-                $query = "INSERT INTO produits
+                $query = "INSERT INTO train_produits
                     SET refProduit = '{$this->refProduit}',
                     nom = '" . addslashes($this->nom) . "',
+                    marque = '" .addslashes($this->marque). "',
                     tarif = '{$this->tarif}',
                     nouveaute = ".($this->nouveaute?1:0).",
                     etat = ".$this->etat.",";
@@ -306,14 +337,15 @@ class Produit {
                 
                 // enregistrement de la promotion
                 if($this->valeurPromo != "") {
-                    $query = "INSERT INTO promotions SET type = 'NORMAL', idProduit = {$id}, valeur = {$this->valeurPromo}";
+                    $query = "INSERT INTO train_promotions SET type = 'NORMAL', idProduit = {$id}, valeur = {$this->valeurPromo}";
                     mysql_query($query) or die(mysql_error($link));
                 }
             }
             else {
-                $query = "UPDATE produits SET
+                $query = "UPDATE train_produits SET
                     refProduit = '{$this->refProduit}',
                     nom = '" . addslashes($this->nom) . "',
+                    marque = '" . addslashes($this->marque) . "',
                     tarif = '{$this->tarif}',
                     nouveaute = ".($this->nouveaute?1:0).",
                     etat = ".$this->etat.",";
@@ -334,9 +366,9 @@ class Produit {
                 // on met à jour la promotion
                 if($this->valeurPromo != "") {
                     if($this->idPromo == "")
-                        $query = "INSERT INTO promotions SET type = 'NORMAL', idProduit = {$this->idProduit}, valeur = {$this->valeurPromo}";
+                        $query = "INSERT INTO train_promotions SET type = 'NORMAL', idProduit = {$this->idProduit}, valeur = {$this->valeurPromo}";
                     else
-                        $query = "UPDATE promotions SET type = 'NORMAL', valeur = {$this->valeurPromo} WHERE idProduit = {$this->idProduit}";
+                        $query = "UPDATE train_promotions SET type = 'NORMAL', valeur = {$this->valeurPromo} WHERE idProduit = {$this->idProduit}";
                     mysql_query($query) or die(mysql_error($link));
                 }
             }
@@ -415,8 +447,8 @@ class Produit {
     function supprimer() {
         $db = new BD_connexion();
         $link = $db->getConnexion();
-        $query = "DELETE FROM produits WHERE idProduit={$this->idProduit}";
-        $query2 = "DELETE FROM promotions WHERE idProduit={$this->idProduit}";
+        $query = "DELETE FROM train_produits WHERE idProduit={$this->idProduit}";
+        $query2 = "DELETE FROM train_promotions WHERE idProduit={$this->idProduit}";
         mysql_query($query) or die(mysql_error($link));
         mysql_query($query2) or die(mysql_error($link));
         $db->closeConnexion();
