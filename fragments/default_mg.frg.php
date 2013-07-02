@@ -16,13 +16,13 @@ $menu_gauche = '
    <div id="cat_wrapper">
 ';
 
-$query = "SELECT * FROM marques";
+$query = "SELECT * FROM train_marques";
 $result = mysql_query($query, $link) or die(mysql_error($link));
 while ($row = mysql_fetch_array($result)) {
     $menu_gauche .= "<a href='#'><div class='cat'>".$row['marque']."</div></a>";
 }
 
-$query = "SELECT * FROM categories";
+$query = "SELECT * FROM train_categories";
 $result = mysql_query($query, $link) or die(mysql_error($link));
 while ($row = mysql_fetch_array($result)) {
     $menu_gauche .= "<a href='#'><div class='cat'>".$row['intitule']."</div></a>";
