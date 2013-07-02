@@ -50,7 +50,7 @@ class Personne {
         elseif ($id != "" && count($tab) == 0) {
             $db = new BD_connexion();
             $link = $db->getConnexion();
-            $query = "SELECT * FROM users WHERE idUser = {$id}";
+            $query = "SELECT * FROM train_users WHERE idUser = {$id}";
             $result = mysql_query($query, $link) or die(mysql_error($link));
 
             $this->idUser = mysql_result($result, 0, 'idUser');
@@ -139,7 +139,7 @@ class Personne {
             if ($this->idUser == 0) { //nouvel enregistrement
                 $id = $this->adresseDomicile->enregistrer();
 
-                $query = "INSERT INTO users
+                $query = "INSERT INTO train_users
                     SET nom = '{$this->nom}',
                     prenom = '{$this->prenom}',
                     adresseDomicile = {$id},
@@ -150,7 +150,7 @@ class Personne {
             else {
                 $id = $this->adresseDomicile->enregistrer();
 
-                $query = "UPDATE users SET
+                $query = "UPDATE train_users SET
                     nom = '{$this->nom}',
                     prenom = '{$this->prenom}',
                     adresseDomicile = {$id},
@@ -207,7 +207,7 @@ class Personne {
     function supprimer() {
         $db = new BD_connexion();
         $link = $db->getConnexion();
-        $query = "DELETE FROM users WHERE idUser={$this->idUser}";
+        $query = "DELETE FROM train_users WHERE idUser={$this->idUser}";
         mysql_query($query) or die(mysql_error($link));
         $db->closeConnexion();
     }
@@ -215,7 +215,7 @@ class Personne {
     function getEmail($login) {
         $db = new BD_connexion();
         $link = $db->getConnexion();
-        $query = "SELECT email FROM users WHERE login='{$login}'";
+        $query = "SELECT email FROM train_users WHERE login='{$login}'";
         $result = mysql_query($query) or die(mysql_error($link));
         $db->closeConnexion();
 

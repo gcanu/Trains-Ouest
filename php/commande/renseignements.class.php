@@ -19,14 +19,14 @@ class Renseignements {
         $cnxObject = new BD_connexion();
         $cnx = $cnxObject->getConnexion();
 
-        $requete = "SELECT nom, prenom, adresseDomicile, adresseLivraison, adresseFacturation FROM users WHERE idUser = {$this->idUser}";
+        $requete = "SELECT nom, prenom, adresseDomicile, adresseLivraison, adresseFacturation FROM train_users WHERE idUser = {$this->idUser}";
         $resultat = mysql_query($requete, $cnx) or die(mysql_error($cnx));
 
         $this->nom = mysql_result($resultat, 0, "nom");
         $this->prenom = mysql_result($resultat, 0, "prenom");
         $this->idDom = mysql_result($resultat, 0, "adresseDomicile");
-        /*$this->idLiv = mysql_result($resultat, 0, "adresseLivraison");
-        $this->idFac = mysql_result($resultat, 0, "adresseFacturation");*/
+        $this->idLiv = mysql_result($resultat, 0, "adresseLivraison");
+        $this->idFac = mysql_result($resultat, 0, "adresseFacturation");
 
         $cnxObject->closeConnexion();
 
@@ -34,7 +34,7 @@ class Renseignements {
         if (count($tab) == 0) {
             $this->adr_personne = new Adresse('PERS', $this->idDom);
 
-            /*if ($this->idLiv != "")
+            if ($this->idLiv != "")
                 $this->adr_livraison = new Adresse('LIVR', $this->idLiv);
             else
                 $this->adr_livraison = new Adresse('LIVR');
@@ -42,23 +42,23 @@ class Renseignements {
             if ($this->idFac != "")
                 $this->adr_facturation = new Adresse('FACT', $this->idFac);
             else
-                $this->adr_facturation = new Adresse('FACT');*/
+                $this->adr_facturation = new Adresse('FACT');
         }
         else { // formulaire validé
             // on récupère chacune des parties du formulaire validé ...
             $postPERS = Outils::filtrerTableau($_POST, 'PERS');
-            /*$postLIVR = Outils::filtrerTableau($_POST, 'LIVR');
-            $postFACT = Outils::filtrerTableau($_POST, 'FACT');*/
+            $postLIVR = Outils::filtrerTableau($_POST, 'LIVR');
+            $postFACT = Outils::filtrerTableau($_POST, 'FACT');
 
             // ... et on initialise chaque objet adresse            
             $this->adr_personne = new Adresse('PERS', $this->idDom, $postPERS);
-            /*$this->adr_livraison = new Adresse('LIVR', $this->idLiv, $postLIVR);
-            $this->adr_facturation = new Adresse('FACT', $this->idFac, $postFACT);*/
+            $this->adr_livraison = new Adresse('LIVR', $this->idLiv, $postLIVR);
+            $this->adr_facturation = new Adresse('FACT', $this->idFac, $postFACT);
         }
     }
 
     function afficherFormulaire() {
-        $html = "<h1>Pré-commande</h1>";
+        $html = "<h1>Livraison, facturation</h1>";
         $html .= "<form method=\"post\" action=\"{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}\">\n";
 
         $html .= "<div class=\"comments\">\n";
@@ -82,7 +82,6 @@ class Renseignements {
         $html .= "  </div>\n";
         $html .= "</div>\n\n";
 
-        /*
         $html .= "<div class=\"comments\" id=\"comments-0\">\n";
         $html .= "  <div class=\"title\">Adresse de livraison <span class=\"delete\"></span><br/>";
         $html .= "  <span class=\"help\">(à remplir si différente de votre adresse personnelle, laisser vierge sinon)</span></div>\n";
@@ -98,9 +97,8 @@ class Renseignements {
         $html .= $this->adr_facturation->afficherFormulaire();
         $html .= "  </div>\n";
         $html .= "</div>\n\n";
-        */
 
-        $html .= "<div class=\"submit\"><input id=\"submit\" type=\"submit\" name=\"valid\" value=\"Valider\" /></div>\n";
+        $html .= "<div class=\"submit\"><input id=\"submit\" type=\"submit\" name=\"valid\" value=\"\" /></div>\n";
 
         $html .= "</form>\n";
 
@@ -108,7 +106,7 @@ class Renseignements {
     }
 
     function afficherRenseignements() {
-        $html = "<h1>Récapitulatif de votre pré-commande</h1>";
+        $html = "<h1>Récapitulatif de votre commande</h1>";
 
         // on récupère les informations liées à la personne
         $html .= "<div class=\"comments\">";
@@ -138,7 +136,6 @@ class Renseignements {
         $html .= "  </div>";
         $html .= "</div>";
 
-        /*
         if (!$personne->adresseFacturation->isEmpty() || !$personne->adresseLivraison->isEmpty()) {
             $html .= "<div class=\"comments\">";
             $html .= "  <div class=\"title\">Information de livraison et facturation</div>";
@@ -166,7 +163,7 @@ class Renseignements {
 
             $html .= "  </div>";
             $html .= "</div>";
-        }*/
+        }
 
         $commande = new Commande(); // Commande s'initialise avec le cookie
         $html .= $commande->afficheDetails(false, true);
@@ -177,31 +174,29 @@ class Renseignements {
 
     function enregistrer() {
         $id1 = $this->adr_personne->enregistrer();
-        $requete = "UPDATE users SET adresseDomicile = {$id1} WHERE idUser = {$this->idUser}";
+        $requete = "UPDATE train_users SET adresseDomicile = {$id1} WHERE idUser = {$this->idUser}";
 
-        /*
         $id2 = $this->adr_livraison->enregistrer();
-        $requete2 = "UPDATE users SET adresseLivraison = {$id2} WHERE idUser = {$this->idUser}";
+        $requete2 = "UPDATE train_users SET adresseLivraison = {$id2} WHERE idUser = {$this->idUser}";
 
         $id3 = $this->adr_facturation->enregistrer();
-        $requete3 = "UPDATE users SET adresseFacturation = {$id3} WHERE idUser = {$this->idUser}";
-        */
+        $requete3 = "UPDATE train_users SET adresseFacturation = {$id3} WHERE idUser = {$this->idUser}";
 
         $cnxObject = new BD_connexion();
         $cnx = $cnxObject->getConnexion();
 
         mysql_query($requete, $cnx) or die(mysql_error($cnx));
-        /*mysql_query($requete2, $cnx) or die(mysql_error($cnx));
+        mysql_query($requete2, $cnx) or die(mysql_error($cnx));
         mysql_query($requete3, $cnx) or die(mysql_error($cnx));
 
         if ($id2 == "NULL" && $this->idLiv != "") {
-            $requete = "DELETE FROM adresses WHERE idAdresse = {$this->idLiv}";
+            $requete = "DELETE FROM train_adresses WHERE idAdresse = {$this->idLiv}";
             mysql_query($requete, $cnx) or die(mysql_error($cnx));
         }
         if ($id3 == "NULL" && $this->idFac != "") {
-            $requete = "DELETE FROM adresses WHERE idAdresse = {$this->idFac}";
+            $requete = "DELETE FROM train_adresses WHERE idAdresse = {$this->idFac}";
             mysql_query($requete, $cnx) or die(mysql_error($cnx));
-        }*/
+        }
 
         $cnxObject->closeConnexion();
     }

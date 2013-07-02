@@ -20,7 +20,7 @@ class Outils {
         $db = new BD_connexion();
         $link = $db->getConnexion();
 	
-        $query = "SELECT tarif FROM produits WHERE idProduit = {$idProduit}";
+        $query = "SELECT tarif FROM train_produits WHERE idProduit = {$idProduit}";
         $result = mysql_query($query, $link) or die(mysql_error());
 
         if (mysql_num_rows($result) > 0) {
@@ -28,7 +28,7 @@ class Outils {
 
             if ($calculePromo) {
 
-                $query2 = "SELECT valeur FROM promotions WHERE idProduit = {$idProduit}";
+                $query2 = "SELECT valeur FROM train_promotions WHERE idProduit = {$idProduit}";
                 $result2 = mysql_query($query2, $link) or die(mysql_error());
 
                 $promo = 0;
@@ -57,7 +57,7 @@ class Outils {
         $db = new BD_connexion();
         $link = $db->getConnexion();
 
-        $query = "SELECT * FROM promotions WHERE type='GLOBAL'";
+        $query = "SELECT * FROM train_promotions WHERE type='GLOBAL'";
         $result = mysql_query($query, $link) or die(mysql_error());
 
         $db->closeConnexion();
@@ -72,7 +72,7 @@ class Outils {
         $db = new BD_connexion();
         $link = $db->getConnexion();
 
-        $query = "SELECT * FROM promotions WHERE idProduit={$idProduit}";
+        $query = "SELECT * FROM train_promotions WHERE idProduit={$idProduit}";
         $result = mysql_query($query, $link) or die(mysql_error());
 
         $db->closeConnexion();
@@ -248,7 +248,7 @@ class Outils {
                 if (preg_match("/idProd=([0-9]+)/", $queryString, $matches))
                     $idProduit = $matches[1];
 
-                $query = "SELECT * FROM produits WHERE idProduit = {$idProduit}";
+                $query = "SELECT * FROM train_produits WHERE idProduit = {$idProduit}";
                 $result = mysql_query($query, $link) or die(mysql_error());
 
                 $category = mysql_result($result, 0, 'idCat');
@@ -263,7 +263,7 @@ class Outils {
             $idCatMere = $category;
 
             while ($idCatMere != null) {
-                $query = "SELECT * FROM categories WHERE idCat={$idCatMere}";
+                $query = "SELECT * FROM train_categories WHERE idCat={$idCatMere}";
                 $result = mysql_query($query, $link) or die(mysql_error());
 
                 $intitule = utf8_encode(mysql_result($result, 0, 'intitule'));

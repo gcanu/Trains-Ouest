@@ -76,8 +76,9 @@ elseif (!isset($_GET['p']) && $_GET['s'] == 1) {
 elseif($_GET['p'] == 1) {
     // message
     $contenu .= "<div>";
-    $contenu .= "    <h1>Traitement de votre pré-commande</h1>";
-    $contenu .= "    <p style='font-family: Arial; font-size: 13px;'>Vous pouvez adresser votre ch&egrave;que a Trains-Ouest.</p>";
+    $contenu .= "    <h1>Reglement de la commande</h1>";
+    $contenu .= "    <p style='font-family: Arial; font-size: 13px;'>Le paiement en ligne par carte bancaire sera bientot disponible.</p>";
+    $contenu .= "    <p style='font-family: Arial; font-size: 13px;'>Vous pouvez adresser pour l'instant votre ch&egrave;que a DECOBAC.</p>";
     $contenu .= "    <p style='font-family: Arial; font-size: 13px;'>Nous traiterons votre commande d&egrave;s r&eacute;ception de votre paiement. Un email de confirmation vous a &eacute;t&eacute; envoy&eacute; avec le descriptif de votre commande. Merci de votre confiance...</p>";
     $contenu .= "</div>";
 
@@ -90,12 +91,12 @@ elseif($_GET['p'] == 1) {
         $commande = new Commande();
          
         $to = $email;
-        $subject = "Votre commande Trains-Ouest";
+        $subject = "Votre commande DECOBAC";
         
         $html = "
             <html>
               <head>
-                  <title>R&eacute;capitulatif de votre commande Trains-Ouest</title>
+                  <title>R&eacute;capitulatif de votre commande DECOBAC</title>
                   <style type=\"text/css\">
                       table {
                           border-collapse: collapse;
@@ -136,7 +137,7 @@ elseif($_GET['p'] == 1) {
         $db = new BD_connexion();
         $link = $db->getConnexion();
 
-        $query = "INSERT INTO commandes SET idUser = ".$_SESSION['auth']->getId().", factureObjet = '".$serializedCommande."'";
+        $query = "INSERT INTO train_commandes SET idUser = ".$_SESSION['auth']->getId().", factureObjet = '".$serializedCommande."'";
         mysql_query($query, $link) or die(mysql_error($link));
         
         $db->closeConnexion(); 

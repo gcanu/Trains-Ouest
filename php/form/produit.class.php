@@ -159,7 +159,7 @@ class Produit {
         
         $db = new BD_connexion();
         $link = $db->getConnexion();
-        $query = "SELECT * FROM marques"; 
+        $query = "SELECT * FROM train_marques"; 
         $result = mysql_query($query, $link) or die(mysql_error($link));
         
         $html .= "<option value=\"0\"></option>";

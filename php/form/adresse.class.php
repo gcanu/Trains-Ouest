@@ -40,7 +40,7 @@ class Adresse {
             $cnxObject = new BD_connexion();
             $cnx = $cnxObject->getConnexion();
 
-            $requete = "SELECT * FROM adresses WHERE idAdresse = {$id}";
+            $requete = "SELECT * FROM train_adresses WHERE idAdresse = {$id}";
             $resultat = mysql_query($requete, $cnx) or die(mysql_error($cnx));
 
             $this->adresse1 = mysql_result($resultat, 0, "adresse1");
@@ -99,14 +99,14 @@ class Adresse {
             $cnx = $cnxObject->getConnexion();
 
             if ($this->id == 0) { // nouvelle adresse
-                $requete = "INSERT INTO adresses SET adresse1 = '{$this->adresse1}',
+                $requete = "INSERT INTO train_adresses SET adresse1 = '{$this->adresse1}',
                 adresse2 = '{$this->adresse2}',
                 codePostal = '{$this->cp}',
                 ville = '{$this->ville}'";
                 $requete2 = "SELECT LAST_INSERT_ID()";
             }
             else {
-                $requete = "UPDATE adresses SET
+                $requete = "UPDATE train_adresses SET
                 adresse1 = '{$this->adresse1}',
                 adresse2 = '{$this->adresse2}',
                 codePostal = '{$this->cp}',
@@ -131,7 +131,7 @@ class Adresse {
         $cnxObject = new BD_connexion();
         $cnx = $cnxObject->getConnexion();
 
-        $requete = "DELETE FROM adresses WHERE idAdresse = {$this->id}";
+        $requete = "DELETE FROM train_adresses WHERE idAdresse = {$this->id}";
         mysql_query($requete, $cnx) or die(mysql_error($cnx));
 
         $cnxObject->closeConnexion();

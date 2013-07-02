@@ -15,7 +15,7 @@ class catProd {
         $this->idCat = $cat;
         $db = new BD_connexion();
         $link = $db->getConnexion();
-        $query = "SELECT intitule FROM categories WHERE idCat={$this->idCat}";
+        $query = "SELECT intitule FROM train_categories WHERE idCat={$this->idCat}";
         
 	$result = mysql_query($query, $link) or die(mysql_error($link));
 
@@ -31,7 +31,7 @@ class catProd {
         $db = new BD_connexion();
         $link = $db->getConnexion();
 
-        $query = "SELECT * FROM produits WHERE idCat = {$this->idCat}";
+        $query = "SELECT * FROM train_produits WHERE idCat = {$this->idCat}";
 
 	$result = mysql_query($query, $link) or die(mysql_error($link));
 
@@ -121,7 +121,7 @@ class catProd {
         $db = new BD_connexion();
         $link = $db->getConnexion();
         
-        $requete = "SELECT * FROM categories WHERE idCatMere = {$this->idCat}";
+        $requete = "SELECT * FROM train_categories WHERE idCatMere = {$this->idCat}";
         
         $resultat = mysql_query($requete, $link) or die(mysql_error($link));
         
@@ -159,7 +159,7 @@ class catProd {
         $db = new BD_connexion();
         $link = $db->getConnexion();
         
-	$requete = "SELECT * FROM categories WHERE idCatMere = {$this->idCat}";
+	$requete = "SELECT * FROM train_categories WHERE idCatMere = {$this->idCat}";
 
         $resultat = mysql_query($requete, $link) or die(mysql_error($link));
 

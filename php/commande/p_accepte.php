@@ -74,7 +74,7 @@ if (!is_null($email)) {
     $db = new BD_connexion();
     $link = $db->getConnexion();
 
-    $query = "INSERT INTO commandes SET idUser = " . $_SESSION['auth']->getId() . ", factureObjet = '" . $serializedCommande . "'";
+    $query = "INSERT INTO train_commandes SET idUser = " . $_SESSION['auth']->getId() . ", factureObjet = '" . $serializedCommande . "'";
     mysql_query($query, $link) or die(mysql_error($link));
 
     $db->closeConnexion();

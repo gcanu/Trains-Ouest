@@ -31,7 +31,7 @@ class PersonneManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT * FROM users";
+        $query = "SELECT * FROM train_users";
 
         $offset = $this->page * $this->nb_par_pages;
         $lignes = $this->nb_par_page;
@@ -78,7 +78,7 @@ class PersonneManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT COUNT(*) FROM users";
+        $query = "SELECT COUNT(*) FROM train_users";
         $result = mysql_query($query) or die(mysql_error($link));
         $nb = mysql_result($result, 0);
         $bd->closeConnexion();

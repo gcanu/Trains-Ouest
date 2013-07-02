@@ -27,7 +27,7 @@ class NouveauteManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT * FROM nouveautes";
+        $query = "SELECT * FROM train_nouveautes";
 
         $offset = $this->page*$this->nb_par_page;
         $lignes = $this->nb_par_page;
@@ -75,7 +75,7 @@ class NouveauteManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT COUNT(*) FROM nouveautes";
+        $query = "SELECT COUNT(*) FROM train_nouveautes";
         $result = mysql_query($query) or die(mysql_error($link));
         $nb = mysql_result($result, 0);
         $bd->closeConnexion();
@@ -107,7 +107,7 @@ class NouveauteManager {
         $link = $db->getConnexion();
         
         // on supprime la promo
-        $query = "DELETE FROM nouveautes WHERE idNouveaute=".$_GET['suppr'];
+        $query = "DELETE FROM train_nouveautes WHERE idNouveaute=".$_GET['suppr'];
         mysql_query($query, $link) or die(mysql_error($link));
         
         $db->closeConnexion();
