@@ -61,11 +61,6 @@ class AfficheProduit extends Produit {
         $html .= "          <p id=\"comment\">";
         $html .= "              {$commentaires}";
         $html .= "          </p>";
-        if ($this->illustration != null || $this->illustration != "") {
-            $html .= "          <p id=\"illustration\">";
-            $html .= "              <img src=\"images/uploaded/illustration/{$this->illustration}\" alt=\"image d'illustration\"/>";
-            $html .= "          </p>";
-        }
         $html .= "      </div>";
         $html .= "   </div>";
         $html .= "</div>";

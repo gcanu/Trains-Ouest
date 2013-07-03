@@ -68,7 +68,7 @@ class Produit {
         elseif ($id != "" && count($tab) == 0) {
             $db = new BD_connexion();
             $link = $db->getConnexion();
-            $query = "SELECT * FROM train_produits WHERE idProduit = {$id}";
+            $query = "SELECT p.*, m.marque FROM train_produits AS p, train_marques AS m WHERE p.idProduit = {$id} AND p.idMarque = m.idMarque";
             $result = mysql_query($query, $link) or die(mysql_error($link));
 
             $this->idProduit = mysql_result($result, 0, 'idProduit');

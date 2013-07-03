@@ -73,7 +73,7 @@ class catProd {
             $html .= $this->outils->ariane();
 
             $html .= "<p>" . utf8_encode($this->intitule) . "<br/><span class=\"help\">pointez un produit pour voir son nom complet</span></p>";
-            $html .= "<div id=\"product_wrapper\">";
+            $html .= "<div id=\"product_wrapper\" class='clearfix'>";
 
             // on affiche le tableau trié
             for ($x = 0; $x < count($produits_tries); $x++) {

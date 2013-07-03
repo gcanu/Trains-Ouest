@@ -23,7 +23,7 @@
 }
 
 #product_wrapper {
-    width: 455px;
+
 }
 
 #product_wrapper a {
@@ -37,7 +37,7 @@
     font-size: 12px;
     width: 180px;
     height: 112px;
-    margin: 4px 4px 4px 4px;
+    margin: 4px 10px 10px 40px;
     padding: 2px;
     position: relative;
     text-align: center;

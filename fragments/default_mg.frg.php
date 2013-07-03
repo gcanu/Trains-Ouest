@@ -13,19 +13,29 @@ $menu_gauche = '
        <a href="index.php?a=contact"><div class="catv contact"></div></a>
        <a href="index.php?a=cgv"><div class="catv cgv"></div></a>
    </div>
-   <div id="cat_wrapper">
+';
+
+$menu_gauche .= '
+  <div id="cat_wrapper" class="subcat">
+    <div id="cat_title">Catégories</div>
+';
+
+$query = "SELECT * FROM train_categories";
+$result = mysql_query($query, $link) or die(mysql_error($link));
+while ($row = mysql_fetch_array($result)) {
+    $menu_gauche .= "<a href='index.php?a=view_cat&cat=".$row['idCat']."'>".$row['intitule']."</a>";
+}
+
+$menu_gauche .= '
+  </div>
+  <div id="cat_wrapper" class="subcat">
+    <div id="cat_title">Marques</div>
 ';
 
 $query = "SELECT * FROM train_marques";
 $result = mysql_query($query, $link) or die(mysql_error($link));
 while ($row = mysql_fetch_array($result)) {
-    $menu_gauche .= "<a href='#'><div class='cat'>".$row['marque']."</div></a>";
-}
-
-$query = "SELECT * FROM train_categories";
-$result = mysql_query($query, $link) or die(mysql_error($link));
-while ($row = mysql_fetch_array($result)) {
-    $menu_gauche .= "<a href='#'><div class='cat'>".$row['intitule']."</div></a>";
+    $menu_gauche .= "<a href='#'>".$row['marque']."</a>";
 }
 
 $db->closeConnexion();
