@@ -7,17 +7,24 @@
  */
 class catProd {
 
-    var $idCat;
+    var $id;
     var $intitule;
     var $outils;
+    var $mode;
 
-    function catProd($cat) {
-        $this->idCat = $cat;
+    function catProd($id, $mode) {
+
+        $this->mode = $mode;
+        $this->id = $id;
         $db = new BD_connexion();
         $link = $db->getConnexion();
-        $query = "SELECT intitule FROM train_categories WHERE idCat={$this->idCat}";
+
+        if(strcmp($this->mode, 'cat') == 0)
+            $query = "SELECT intitule FROM train_categories WHERE idCat={$this->id}";
+        elseif (strcmp($this->mode, 'mq') == 0)
+            $query = "SELECT marque FROM train_marques WHERE idMarque={$this->id}";
         
-	$result = mysql_query($query, $link) or die(mysql_error($link));
+        $result = mysql_query($query, $link) or die(mysql_error($link));
 
         $this->intitule = mysql_result($result, 0);
         $db->closeConnexion();
@@ -31,9 +38,12 @@ class catProd {
         $db = new BD_connexion();
         $link = $db->getConnexion();
 
-        $query = "SELECT * FROM train_produits WHERE idCat = {$this->idCat}";
+        if(strcmp($this->mode, 'cat') == 0)
+            $query = "SELECT * FROM train_produits WHERE idCat = {$this->id}";
+        elseif (strcmp($this->mode, 'mq') == 0)
+            $query = "SELECT * FROM train_produits WHERE idMarque = {$this->id}";
 
-	$result = mysql_query($query, $link) or die(mysql_error($link));
+        $result = mysql_query($query, $link) or die(mysql_error($link));
 
         if (mysql_num_rows($result)) {
             $produits = array();
@@ -69,9 +79,6 @@ class catProd {
 
             $produits_tries[$x] = $produits[count($produits) - 1];
 
-            // ajout du fil d'ariane
-            $html .= $this->outils->ariane();
-
             $html .= "<p>" . utf8_encode($this->intitule) . "<br/><span class=\"help\">pointez un produit pour voir son nom complet</span></p>";
             $html .= "<div id=\"product_wrapper\" class='clearfix'>";
 
@@ -106,71 +113,20 @@ class catProd {
             $html .= "</div>";
         }
         else {
-            $html .= $this->outils->ariane();
-            $html .= "<p>Il n'y a pas de produits associés à cette catégorie</p>";
+            $html .= "<p>Il n'y a pas de produits associés à cette ";
+
+            if(strcmp($this->mode, 'cat') == 0)
+                $html .= "catégorie";
+            elseif(strcmp($this->mode, 'mq') == 0)
+                $html .= "marque";
+
+            $html .= "</p>";
         }
 
         $db->closeConnexion();
 
         return $html;
     }
-
-    function afficherSousCategories() {
-        $html = "";
-
-        $db = new BD_connexion();
-        $link = $db->getConnexion();
-        
-        $requete = "SELECT * FROM train_categories WHERE idCatMere = {$this->idCat}";
-        
-        $resultat = mysql_query($requete, $link) or die(mysql_error($link));
-        
-        // ajout du fil d'ariane
-        $outils = new Outils();
-        $html .= $outils->ariane();
-
-        $html .= "<p>{$this->intitule}</p>\n";
-
-        $html .= "<div id=\"ssCat\">\n";
-        while ($ligne = mysql_fetch_array($resultat)) {
-            $html .= "<a href=\"index.php?a=view_cat&cat={$ligne['idCat']}\">";
-            $html .= "  <div class=\"ssCat_element\">\n";
-
-            $intitule = $ligne['intitule'];
-            $titre = utf8_encode($intitule);
-            $fileName = Outils::replaceSpace(Outils::removeaccents(utf8_encode(strtolower($intitule))));
-
-            $html .= "      <div class=\"ssCat_titre\" style=\"background-image: url(images/sscat/titre_{$fileName}.png);\">\n";
-            $html .= "      </div>\n";
-            $html .= "      <div class=\"ssCat_img\" style=\"background-image: url(images/sscat/img_{$fileName}.png);\">\n";
-            $html .= "      </div>\n";
-            $html .= "  </div>\n";
-            $html .= "</a>";
-        }
-        $html .= "</div>\n";
-
-        $db->closeConnexion();
-
-        return $html;
-    }
-
-    // Vérifie la présence de sous-catégories
-    function sousCategories() {
-        $db = new BD_connexion();
-        $link = $db->getConnexion();
-        
-	$requete = "SELECT * FROM train_categories WHERE idCatMere = {$this->idCat}";
-
-        $resultat = mysql_query($requete, $link) or die(mysql_error($link));
-
-        $db->closeConnexion();
-
-        if (mysql_num_rows($resultat) > 0)
-            return true;
-        else
-            return false;
-    }
-
 }
 
 ?>

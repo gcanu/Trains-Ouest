@@ -35,7 +35,8 @@ $menu_gauche .= '
 $query = "SELECT * FROM train_marques";
 $result = mysql_query($query, $link) or die(mysql_error($link));
 while ($row = mysql_fetch_array($result)) {
-    $menu_gauche .= "<a href='#'>".$row['marque']."</a>";
+    if($row['idMarque'] > 0)
+      $menu_gauche .= "<a href='index.php?a=view_cat&mq=".$row['idMarque']."'>".$row['marque']."</a>";
 }
 
 $db->closeConnexion();
