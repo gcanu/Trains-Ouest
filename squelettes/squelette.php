@@ -36,11 +36,6 @@
                         <a href="index.php?a=connexion"><div id="navigh1"></div></a>
                         <a href="index.php?a=inscription"><div id="navigh2"></div></a> 
                     </div>
-                    <div id="panier">
-                        <span id="p_total">0,00 &euro;</span>
-                        <div id="liste_article"></div>
-                        <div id="panier-aide"></div>
-                    </div>
                 </div>
                 <div id="main_wrapper" class="clearfix">
                     <div id="content_wrapper">
@@ -55,22 +50,6 @@
                 </div>
             </div>
             <div id="wrapper_bottom"></div>
-            <div id="panier-aide-content">
-                <div class="content">
-                    <h2>Fonctionnement du panier</h2>
-                    <p>
-                        Le panier contient les produits que vous avez commandé. 
-                        A tout moment vous pouvez modifier son contenu
-                    </p>
-                    <p>
-                        Si vous souhaitez supprimer un article, cliquez sur <img src="images/fermer_petit.png" /> à côté du produit.
-                    </p>
-                    <p>
-                        Si vous souhaitez modifier un article, supprimez-le et refaite la commande.
-                    </p>
-                </div>
-                <div class="close"></div>
-            </div>
         </div>
     </body>
 </html>
