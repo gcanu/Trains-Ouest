@@ -300,12 +300,12 @@ switch ($a) {
         array_push($css, "catview.css");
         array_push($css, "produit.css");
 
-        $cat = new catProd($_GET['cat']);
+        if(isset($_GET['cat']))
+            $catProd = new catProd($_GET['cat'], "cat");
+        elseif(isset($_GET['mq']))
+            $catProd = new catProd($_GET['mq'], "mq");
 
-        if ($cat->sousCategories())
-            $contenu_plus = $cat->afficherSousCategories();
-        else
-            $contenu_plus = $cat->afficherProduits();
+        $contenu_plus = $catProd->afficherProduits();
 
         include("fragments/cat.frg.php");
         break;

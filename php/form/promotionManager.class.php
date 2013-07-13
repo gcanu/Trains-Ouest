@@ -31,8 +31,8 @@ class PromotionManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT PM.*, PD.refProduit, PD.nom FROM promotions AS PM
-                    INNER JOIN produits AS PD ON PD.idProduit = PM.idProduit";
+        $query = "SELECT PM.*, PD.refProduit, PD.nom FROM train_promotions AS PM
+                    INNER JOIN train_produits AS PD ON PD.idProduit = PM.idProduit";
 
         $offset = $this->page * $this->nb_par_page;
         $lignes = $this->nb_par_page;
@@ -83,7 +83,7 @@ class PromotionManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT COUNT(*) FROM promotions WHERE type <> 'GLOBAL'";
+        $query = "SELECT COUNT(*) FROM train_promotions WHERE type <> 'GLOBAL'";
         $result = mysql_query($query) or die(mysql_error($link));
         $nb = mysql_result($result, 0);
         $bd->closeConnexion();

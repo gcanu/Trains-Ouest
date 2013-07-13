@@ -27,7 +27,7 @@ class Nouveautes {
         elseif ($id != "" && count($tab) == 0) {
             $db = new BD_connexion();
             $link = $db->getConnexion();
-            $query = "SELECT * FROM nouveautes WHERE idNouveaute = {$id}";
+            $query = "SELECT * FROM train_nouveautes WHERE idNouveaute = {$id}";
             echo $query;
             $result = mysql_query($query, $link) or die(mysql_error($link));
             
@@ -100,7 +100,7 @@ class Nouveautes {
             $this->img = $this->traiteImage($_FILES['img'], 'images/news/');
 
             if ($this->idNouveaute == "") { //nouvel enregistrement
-                $query = "INSERT INTO nouveautes
+                $query = "INSERT INTO train_nouveautes
                     SET titre = '{$this->titre}',";
                     
                 if ($this->img != null)
@@ -112,7 +112,7 @@ class Nouveautes {
                 $id = mysql_result($result_id, 0);
             }
             else {
-                $query = "UPDATE nouveautes SET
+                $query = "UPDATE train_nouveautes SET
                     titre = '{$this->titre}'";
 
                 if ($this->img != null)
@@ -166,7 +166,7 @@ class Nouveautes {
     function supprimer() {
         $db = new BD_connexion();
         $link = $db->getConnexion();
-        $query = "DELETE FROM nouveautes WHERE idNouveaute={$this->idNouveaute}";
+        $query = "DELETE FROM train_nouveautes WHERE idNouveaute={$this->idNouveaute}";
         mysql_query($query) or die(mysql_error($link));
         $db->closeConnexion();
     }

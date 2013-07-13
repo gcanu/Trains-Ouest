@@ -73,7 +73,7 @@ elseif (!isset($_GET['p']) && $_GET['s'] == 1) {
         }
     }
 }
-// Le cas suivant reprÃsente la fin du processus de validation de la commande et le lancement du processus de paiement en ligne
+// Le cas suivant reprï¿½sente la fin du processus de validation de la commande et le lancement du processus de paiement en ligne
 elseif($_GET['p'] == 1) {
     // on inscrit la commande en base
     $commande = new Commande();
@@ -82,7 +82,7 @@ elseif($_GET['p'] == 1) {
     $db = new BD_connexion();
     $link = $db->getConnexion();
 
-    $query = "INSERT INTO commandes SET idUser = ".$_SESSION['auth']->getId().", factureObjet = '".$serializedCommande."'";
+    $query = "INSERT INTO train_commandes SET idUser = ".$_SESSION['auth']->getId().", factureObjet = '".$serializedCommande."'";
     mysql_query($query, $link) or die(mysql_error($link));
 
    /**

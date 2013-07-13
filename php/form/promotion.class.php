@@ -15,7 +15,7 @@ class Promotion {
         if($promotion == null) {
             $db = new BD_connexion();
             $link = $db->getConnexion();        
-            $query = "SELECT valeur FROM promotions WHERE type = 'GLOBAL'";
+            $query = "SELECT valeur FROM train_promotions WHERE type = 'GLOBAL'";
             $result = mysql_query($query, $link) or die(mysql_error($link));
             
             if(mysql_num_rows($result) > 0)
@@ -51,7 +51,7 @@ class Promotion {
         
         $db = new BD_connexion();
         $link = $db->getConnexion();        
-        $query = "SELECT COUNT(*) FROM promotions WHERE type = 'GLOBAL'";
+        $query = "SELECT COUNT(*) FROM train_promotions WHERE type = 'GLOBAL'";
         $result = mysql_query($query, $link) or die(mysql_error($link));
         $db->closeConnexion();
         
@@ -76,9 +76,9 @@ class Promotion {
         $db = new BD_connexion();
         $link = $db->getConnexion();
         
-        $query = "SELECT PM.*, PD.idProduit, PD.nom, PD.img, C.intitule FROM promotions AS PM 
-            INNER JOIN produits AS PD ON PM.idProduit = PD.idProduit
-            INNER JOIN categories AS C ON PD.idCat = C.idCat";
+        $query = "SELECT PM.*, PD.idProduit, PD.nom, PD.img, C.intitule FROM train_promotions AS PM 
+            INNER JOIN train_produits AS PD ON PM.idProduit = PD.idProduit
+            INNER JOIN train_categories AS C ON PD.idCat = C.idCat";
         $result = mysql_query($query, $link) or die(mysql_error($link));
         
         while ($ligne = mysql_fetch_array($result)) {
@@ -113,11 +113,11 @@ class Promotion {
             $db = new BD_connexion();
             $link = $db->getConnexion();
             
-            $query = "DELETE FROM promotions WHERE type = 'GLOBAL'";
+            $query = "DELETE FROM train_promotions WHERE type = 'GLOBAL'";
             mysql_query($query) or die(mysql_error($link));
             
             if($this->promotion != 0) {
-                $query = "INSERT INTO promotions SET type = 'GLOBAL', idProduit = NULL, valeur = {$this->promotion}";
+                $query = "INSERT INTO train_promotions SET type = 'GLOBAL', idProduit = NULL, valeur = {$this->promotion}";
                 mysql_query($query) or die(mysql_error($link));
                 $this->messages = "<span>La promotion a été bien enregistrée.</span>";
             }
@@ -157,7 +157,7 @@ class Promotion {
         $link = $db->getConnexion();
         
         // on supprime la promo
-        $query = "DELETE FROM promotions WHERE id={$this->promotion}";
+        $query = "DELETE FROM train_promotions WHERE id={$this->promotion}";
         mysql_query($query, $link) or die(mysql_error($link));
     }
 }

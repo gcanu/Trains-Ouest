@@ -78,7 +78,7 @@ class authentification {
         $db = new BD_connexion();
         $link = $db->getConnexion();
 
-        $query = "SELECT idUser, passwd FROM users WHERE login='{$login}'";
+        $query = "SELECT idUser, passwd FROM train_users WHERE login='{$login}'";
         $r = mysql_query($query, $link) or die("Impossible de lancer la requete");
         $db->closeConnexion();
 
@@ -103,7 +103,7 @@ class authentification {
             $db = new BD_connexion();
             $link = $db->getConnexion();
         
-            $query = "SELECT admin FROM users WHERE login='{$this->login}'";
+            $query = "SELECT admin FROM train_users WHERE login='{$this->login}'";
             $result = mysql_query($query, $link) or die("Impossible de lancer la requete : ".mysql_error());
             $statut = mysql_result($result, 0, 'admin');
 

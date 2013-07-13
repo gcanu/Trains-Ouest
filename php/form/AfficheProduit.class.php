@@ -19,14 +19,9 @@ class AfficheProduit extends Produit {
         $db = new BD_connexion();
         $link = $db->getConnexion();
 
-        $query = "SELECT intitule FROM categories WHERE idCat = {$this->idCat}";
+        $query = "SELECT intitule FROM train_categories WHERE idCat = {$this->idCat}";
         $result = mysql_query($query, $link) or die(mysql_error($link));
         $nomCat = mysql_result($result, 0);
-
-        $query2 = "SELECT intitule FROM etats, produits WHERE produits.etat = etats.idEtat";
-        $result2 = mysql_query($query2, $link) or die(mysql_error($link));
-        $etat = mysql_result($result2, 0);
-
         $db->closeConnexion();
 
         $html = "";
@@ -35,10 +30,7 @@ class AfficheProduit extends Produit {
 
         $html .= "<div id=\"fiche_produit\">";
         $html .= "  <div id=\"titre_produit\">{$this->nom}</div>";
-        $html .= "  <div id=\"img_produit\">";
-        $html .= "    <img src=\"images/uploaded/{$this->img}\" onClick=\"modalbox('images/uploaded/zoom/{$this->img_zoom}')\" />";
-        $html .= "    <div class=\"zoom\"></div>";
-        $html .= "  </div>";
+        $html .= "  <div id=\"img_produit\"><img src=\"images/uploaded/{$this->img}\" onClick=\"modalbox('images/uploaded/zoom/{$this->img_zoom}')\" /></div>";
         $html .= "  <div id=\"descriptif_produit\">";
 
         if ($prix == $promo)
@@ -60,8 +52,6 @@ class AfficheProduit extends Produit {
         else
             $prix_html = $prix;
 
-        $html .= "<p>disponibilité : ".strtolower($etat)."</p>";
-
         $onClick = "i_panier.displayQtyChooser({$this->idProduit})";
         $html .= "{$prix_html}<img src=\"images/cart.png\" onClick=\"{$onClick}\" /><br/>";
         
@@ -71,11 +61,6 @@ class AfficheProduit extends Produit {
         $html .= "          <p id=\"comment\">";
         $html .= "              {$commentaires}";
         $html .= "          </p>";
-        if ($this->illustration != null || $this->illustration != "") {
-            $html .= "          <p id=\"illustration\">";
-            $html .= "              <img src=\"images/uploaded/illustration/{$this->illustration}\" alt=\"image d'illustration\"/>";
-            $html .= "          </p>";
-        }
         $html .= "      </div>";
         $html .= "   </div>";
         $html .= "</div>";

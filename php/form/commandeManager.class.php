@@ -34,7 +34,7 @@ class commandeManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT * FROM commandes WHERE archive = " . ($archive ? 1 : 0);
+        $query = "SELECT * FROM train_commandes WHERE archive = " . ($archive ? 1 : 0);
 
         $offset = $this->page * $this->nb_par_page;
         $lignes = $this->nb_par_page;
@@ -94,7 +94,7 @@ class commandeManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT * FROM commandes WHERE idCommande = {$id}";
+        $query = "SELECT * FROM train_commandes WHERE idCommande = {$id}";
         $result = mysql_query($query) or die(mysql_error($link));
         $bd->closeConnexion();
 
@@ -109,7 +109,7 @@ class commandeManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "UPDATE commandes SET archive = 1 WHERE idCommande = {$id}";
+        $query = "UPDATE train_commandes SET archive = 1 WHERE idCommande = {$id}";
         $result = mysql_query($query);
         $bd->closeConnexion();
 
@@ -123,7 +123,7 @@ class commandeManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT COUNT(*) FROM commandes";
+        $query = "SELECT COUNT(*) FROM train_commandes";
         $result = mysql_query($query) or die(mysql_error($link));
         $nb = mysql_result($result, 0);
         $bd->closeConnexion();
@@ -151,7 +151,7 @@ class commandeManager {
     function supprimer($id) {
         $db = new BD_connexion();
         $link = $db->getConnexion();
-        $query = "DELETE FROM commandes WHERE idCommande={$id}";
+        $query = "DELETE FROM train_commandes WHERE idCommande={$id}";
         $result = mysql_query($query) or die(mysql_error($link));
         $db->closeConnexion();
 

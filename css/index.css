@@ -10,6 +10,25 @@
     margin-bottom: 20px;
 }
 
+#cat_title {
+    font-family: Georgia;
+    font-size: 15pt;
+    margin: 5px 0 10px 0;
+}
+
+#cat_wrapper.subcat a {
+    background-image: url(../images/bg_cat.png);
+    height: 26px;
+    display: block;
+    width: 230px;
+    padding: 6px 0 0 5px;
+    font-family: Georgia;
+    color: white;
+    border-radius: 5px;
+    text-shadow: 1px 1px 4px black;
+    margin-bottom: 4px;
+}
+
 .catv {
     width: 235px;
     height: 28px;

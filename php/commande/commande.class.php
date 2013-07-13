@@ -61,7 +61,8 @@ class Commande {
                 $html .= "      <td>{$this->commande[$x]['quantite']}</td>";
 
                 // si le prix est en promo, affichage particulier
-                $promo = Outils::getPromo($this->commande[$x]['id']);
+                $produit = Outils::getProduit($this->commande[$x]['ref']);
+                $promo = Outils::getPromo($produit['id']);
 
                 if ($promo == 0)
                     $html .= "      <td>" . Outils::formatPrix($this->commande[$x]['PUTTC']) . "</td>";
@@ -234,30 +235,44 @@ class Commande {
             // pour chaque item, on parcourt les données
             for ($x = 0; $x < count($items); $x++) {
                 $infos = explode(";", $items[$x]);
-                $idProduit = $infos[0];
+                $idTaille = $infos[0];
                 $quantite = $infos[1];
 
                 $db = new BD_connexion();
                 $link = $db->getConnexion();
 
+                // on récupère toutes les infos pour déterminer la référence du produit
+                $query = "SELECT idProduit, taille FROM train_tailles WHERE idTaille = {$idTaille}";
+                $result = mysql_query($query, $link) or die(mysql_error($link));
+                $idProduit = mysql_result($result, 0, 'idProduit');
+                $taille = mysql_result($result, 0, 'taille');
+
                 $outils = new Outils();
-                $puttc = $outils->getPrix($idProduit);
+                $puttc = $outils->getPrix($idProduit, $idTaille);
                 $pttc = $puttc * $quantite;
                 $ptht = $pttc / 1.196;
                 $tva = $pttc - $ptht;
                 $puht = $ptht / $quantite;
 
+                $query2 = "SELECT idCouleur, nomCouleur FROM train_couleurs WHERE codeCouleur = '{$infos[2]}' AND idProduit = {$idProduit}";
+                $result2 = mysql_query($query2, $link) or die(mysql_error($link));
+                $idCouleur = mysql_result($result2, 0, 'idCouleur');
+                $refCouleur = mysql_result($result2, 0, 'nomCouleur');
+
                 // on génère une designation à partir des informations recueillies
-                $query = "SELECT * FROM produits WHERE idProduit = {$idProduit}";
-                $result = mysql_query($query, $link) or die(mysql_error($link));
-                $designation = mysql_result($result, 0, 'nom');
-                $refProduit = mysql_result($result, 0, 'refProduit');
+                $query3 = "SELECT * FROM train_produits WHERE idProduit = {$idProduit}";
+                $result3 = mysql_query($query3, $link) or die(mysql_error($link));
+                $designation = mysql_result($result3, 0, 'nom');
+                $designation .= ", taille : " . $taille . "cm, ";
+
+                $designation .= " couleur : " . $refCouleur;
 
                 $db->closeConnexion();
 
+                $ref = Outils::getReference($idProduit, $idCouleur, $idTaille);
+
                 $this->commande[$x] = array(
-                    'id' => $idProduit,
-                    'ref' => $refProduit,
+                    'ref' => $ref,
                     'designation' => $designation,
                     'quantite' => $quantite,
                     'PUHT' => $puht,

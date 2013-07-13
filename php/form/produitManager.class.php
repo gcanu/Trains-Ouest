@@ -32,7 +32,7 @@ class ProduitManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT * FROM produits";
+        $query = "SELECT * FROM train_produits";
 
         $offset = $this->page * $this->nb_par_page;
         $lignes = $this->nb_par_page;
@@ -82,7 +82,7 @@ class ProduitManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT COUNT(*) FROM produits";
+        $query = "SELECT COUNT(*) FROM train_produits";
         $result = mysql_query($query) or die(mysql_error($link));
         $nb = mysql_result($result, 0);
         $bd->closeConnexion();
