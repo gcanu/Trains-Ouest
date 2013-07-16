@@ -46,10 +46,7 @@ $scripts = array(
     "mooTools-more.js",
     "Observer.class.js",
     "SimpleDialog.class.js",
-    "main.js",
-    "panier/panier.class.js",
-    "panier/produit.class.js",
-    "panier/aide.class.js");
+    "main.js");
 
 $contenu = "";
 
@@ -313,7 +310,6 @@ switch ($a) {
     case 'prod':
         array_push($css, "index.css");
         array_push($css, "produit.css");
-        array_push($css, "panier.css");
 
         array_push($scripts, "modalbox/modalbox.js");
 

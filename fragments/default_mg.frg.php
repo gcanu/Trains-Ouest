@@ -5,19 +5,23 @@ $link = $db->getConnexion();
 
 
 $menu_gauche = '
-   <div id="cat_wrapper">
-       <a href="index.php"><div class="catv accueil"></div></a>
-       <a href="index.php?a=presentation"><div class="catv presentation"></div></a>
-       <a href="index.php?a=boutique"><div class="catv boutique"></div></a>
-       <a href="index.php?a=commander"><div class="catv commander"></div></a>
-       <a href="index.php?a=contact"><div class="catv contact"></div></a>
-       <a href="index.php?a=cgv"><div class="catv cgv"></div></a>
+   <div class="cat_wrapper">
+       <div class="title">Boutique</div>
+       <div class="content">
+         <a href="index.php">Accueil</a>
+         <a href="index.php?a=presentation">Présentation</a>
+         <a href="index.php?a=boutique">Boutique</a>
+         <a href="index.php?a=commander">Commander</a>
+         <a href="index.php?a=contact">Contact</a>
+         <a href="index.php?a=cgv">CGV</a>
+       </div>
    </div>
 ';
 
 $menu_gauche .= '
-  <div id="cat_wrapper" class="subcat">
-    <div id="cat_title">Catégories</div>
+  <div class="cat_wrapper">
+    <div class="title">Catégories</div>
+    <div class="content">
 ';
 
 $query = "SELECT * FROM train_categories";
@@ -27,9 +31,11 @@ while ($row = mysql_fetch_array($result)) {
 }
 
 $menu_gauche .= '
+    </div>
   </div>
-  <div id="cat_wrapper" class="subcat">
-    <div id="cat_title">Marques</div>
+  <div class="cat_wrapper">
+    <div class="title">Marques</div>
+    <div class="content">
 ';
 
 $query = "SELECT * FROM train_marques";
@@ -42,6 +48,7 @@ while ($row = mysql_fetch_array($result)) {
 $db->closeConnexion();
 
 $menu_gauche .= '
+      </div>
     </div>
 ';
 

@@ -6,33 +6,35 @@
  * Catégories
  * ----------*/
 
-#cat_wrapper {
-    margin-bottom: 20px;
-}
-
-#cat_title {
-    font-family: Georgia;
-    font-size: 15pt;
-    margin: 5px 0 10px 0;
-}
-
-#cat_wrapper.subcat a {
-    background-image: url(../images/bg_cat.png);
-    height: 26px;
-    display: block;
-    width: 230px;
-    padding: 6px 0 0 5px;
-    font-family: Georgia;
-    color: white;
+.cat_wrapper {
+    background: #4690FF;
     border-radius: 5px;
-    text-shadow: 1px 1px 4px black;
-    margin-bottom: 4px;
+    width: 229px;
+    padding: 3px;
+    margin: 5px 0 15px 0;
 }
 
-.catv {
-    width: 235px;
-    height: 28px;
-    margin-bottom: 5px;
+.cat_wrapper .title {
+    background: none;
+    font-size: 18px;
+    height: auto;
+    width: 100%;
+    margin: 0;
+    padding: 1px 0 5px 0;
+}
+
+.cat_wrapper .content {
+    border-radius: 2px;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+}
+
+.cat_wrapper a {
+    display: block;
+    font: normal 14px Century Gothic;
+    margin-left: 15px;
+    color: black;
 }
 
 .accueil {

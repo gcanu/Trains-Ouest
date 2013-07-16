@@ -52,31 +52,8 @@ a {
 #banner {
     position: relative;
     background-image: url(../images/banniere.png);
-    width: 667px;
     height: 160px;
     top: -16px;
-}
-
-#navigh {
-    position: absolute;    
-    width: 294px;
-    height: 34px;
-    top: -10px;
-    left: 738px;
-}
-
-#navigh1 {
-    background-image: url(../images/navigh-01.png);
-    width: 150px;
-    height: 34px;
-    float: left;
-}
-
-#navigh2 {
-    background-image: url(../images/navigh-02.png);
-    width: 144px;
-    height: 34px;
-    float: left;
 }
 
 #panier {
@@ -183,7 +160,7 @@ a {
 }
 
 #left_column {
-    float: left;
+    /*float: left;*/
 }
 
 #right_column {

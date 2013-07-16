@@ -32,10 +32,6 @@
             <div id="wrapper" class="clearfix">
                 <div>
                     <a href="index.php"><div id="banner"></div></a>
-                    <div id="navigh">
-                        <a href="index.php?a=connexion"><div id="navigh1"></div></a>
-                        <a href="index.php?a=inscription"><div id="navigh2"></div></a> 
-                    </div>
                 </div>
                 <div id="main_wrapper" class="clearfix">
                     <div id="content_wrapper">
