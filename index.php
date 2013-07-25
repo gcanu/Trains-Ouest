@@ -20,6 +20,8 @@ require("php/form/promotion.class.php");
 require("php/form/promotionManager.class.php");
 require("php/form/nouveautes.class.php");
 require("php/form/nouveautesManager.class.php");
+require("php/form/dossiers.class.php");
+require("php/form/dossiersManager.class.php");
 require("php/galerie.class.php");
 require("php/resize.php");
 
@@ -67,6 +69,7 @@ switch ($a) {
                 <a href=\"index.php?a=ges_com\">Gérer les commandes</a><br/>
                 <a href=\"index.php?a=ges_promo\">Gérer les promotions</a><br/>
                 <a href=\"index.php?a=ges_nouv\">Gérer les nouveautés</a><br/>
+                <a href=\"index.php?a=ges_dos\">Gérer les dossiers</a><br/>
             </p>";
         $menu_gauche = "";
         $menu_droit = "";
@@ -287,6 +290,51 @@ switch ($a) {
                 $r = $nouveaute->enregistrer();
                 if ($r == null)
                     $contenu = "<script>document.location = 'index.php?a=ges_nouv'</script>";
+                else
+                    $contenu = $r;
+            }
+        }
+
+        include("fragments/mg.frg.php");
+        break;
+        
+    case 'ges_dos':
+        array_push($css, "produitForm.css");
+
+        // verification des droits pour accès
+        $_SESSION['auth']->verifie_droits("admin");
+
+        if (!isset($_GET['form']) && !isset($_GET['suppr'])) {
+            $dossier = new DossierManager();
+            $contenu = $dossier->afficher();
+        } 
+        else if (!isset($_GET['form']) && isset($_GET['suppr'])) {
+            $dossier = new DossierManager($_GET['suppr']);
+
+            if (!isset($_GET['confirm']))
+                $contenu = $dossier->supprimerFormulaire();
+            else {
+                if ($_GET['confirm'] == 'y')
+                    $dossier->supprimer();
+                $contenu = "<script>document.location = 'index.php?a=ges_dos'</script>";
+            }
+        }
+        else if(isset($_GET['form'])) {
+            if ($_GET['form'] == 'new')
+                $id = "";
+            else
+                $id = $_GET['form'];
+            
+            if (!isset($_POST['valid'])) {
+                $dossier = new Dossiers($id);
+                $contenu = $dossier->afficherFormulaire();
+            } 
+            else {
+                var_dump($_POST);
+                $dossier = new Dossiers($id, $_POST);
+                $r = $dossier->enregistrer();
+                if ($r == null)
+                    $contenu = "<script>document.location = 'index.php?a=ges_dos'</script>";
                 else
                     $contenu = $r;
             }

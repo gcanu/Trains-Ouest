@@ -6,7 +6,7 @@ require("fragments/default_bas.frg.php");
 
 $db = new BD_connexion();
 $link = $db->getConnexion();
-$query = "SELECT * FROM train_nouveautes";
+$query = "SELECT * FROM train_nouveautes WHERE idDossier = 0";
 
 $result = mysql_query($query, $link) or die(mysql_error($link));
 

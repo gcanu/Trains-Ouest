@@ -23,7 +23,7 @@ $menu_gauche .= '
 $query = "SELECT * FROM train_categories";
 $result = mysql_query($query, $link) or die(mysql_error($link));
 while ($row = mysql_fetch_array($result)) {
-    $menu_gauche .= "<a href='index.php?a=view_cat&cat=".$row['idCat']."'>".$row['intitule']."</a>";
+    $menu_gauche .= "<a href='index.php?a=view_cat&cat=" . $row['idCat'] . "'>" . $row['intitule'] . "</a>";
 }
 
 $menu_gauche .= '
@@ -32,11 +32,40 @@ $menu_gauche .= '
     <div id="cat_title">Marques</div>
 ';
 
+/*
+ *  affichage des marques
+ */
+
 $query = "SELECT * FROM train_marques";
 $result = mysql_query($query, $link) or die(mysql_error($link));
 while ($row = mysql_fetch_array($result)) {
-    if($row['idMarque'] > 0)
-      $menu_gauche .= "<a href='index.php?a=view_cat&mq=".$row['idMarque']."'>".$row['marque']."</a>";
+    if ($row['idMarque'] > 0)
+        $menu_gauche .= "<a href='index.php?a=view_cat&mq=" . $row['idMarque'] . "'>" . $row['marque'] . "</a>";
+}
+
+
+
+/*
+ * Affichage des dossier s'il y en a
+ */
+$query = "SELECT n.idDossier, d.titre FROM train_nouveautes AS n, train_dossiers AS d WHERE n.idDossier = d.idDossier GROUP BY n.idDossier";
+$result = mysql_query($query, $link) or die(mysql_error($link));
+
+if (mysql_num_rows($result) > 0) {
+
+    $menu_gauche .= '
+        <div id="cat_wrapper" class="subcat">
+        <div id="cat_title">Dossiers</div>
+    ';
+
+    while ($row = mysql_fetch_array($result)) {
+        if($row['idDossier'] > 0)
+            $menu_gauche .= "<a href='index.php?a=view_dos&id=" . $row['idDossier'] . "'>" . $row['titre'] . "</a>";
+    }
+
+    $menu_gauche .= '
+        </div>
+    ';
 }
 
 $db->closeConnexion();
@@ -44,5 +73,4 @@ $db->closeConnexion();
 $menu_gauche .= '
     </div>
 ';
-
 ?>
