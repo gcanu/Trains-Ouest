@@ -4,12 +4,12 @@
  *
  * @author GUILLAUME
  */
-class NouveauteManager {
+class DossierManager {
 
     var $nb_par_page;
     var $page;
 
-    function NouveauteManager() {
+    function DossierManager() {
         $this->nb_par_page = 30;
 
         if(isset($_GET['limit']))
@@ -21,13 +21,13 @@ class NouveauteManager {
     function afficher() {
         $html = "";
 
-        $html .= "<h1>Gestion des nouveautés</h1>\n";
-        $html .= "<p><a href='index.php?a=ges_nouv&form=new'>Ajouter une nouveauté</a></p>";
+        $html .= "<h1>Gestion des dossiers</h1>\n";
+        $html .= "<p><a href='index.php?a=ges_dos&form=new'>Ajouter un dossier</a></p>";
 
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT n.*, d.titre AS titreDossier FROM train_nouveautes AS n, train_dossiers AS d WHERE n.idDossier = d.idDossier ORDER BY d.titre";
+        $query = "SELECT * FROM train_dossiers";
 
         $offset = $this->page*$this->nb_par_page;
         $lignes = $this->nb_par_page;
@@ -36,13 +36,12 @@ class NouveauteManager {
         $result = mysql_query($query) or die(mysql_error($link));
 
         if (mysql_num_rows($result) == 0)
-            $html .= "<p>Aucune nouveauté</p>\n";
+            $html .= "<p>Aucun dossier</p>\n";
         else {
             $html .= "<table id=\"manager\">\n";
             $html .= "  <tr class=\"firstLine\">\n";
             $html .= "      <td id=\"tdRef\">Id</td>\n";
             $html .= "      <td id=\"tdTitre\">Titre</td>\n";
-            $html .= "      <td id=\"tdTitre\">Dossier</td>\n";
             $html .= "      <td id=\"tdOp\">Opérations</td>\n";
             $html .= "  </tr>\n";
 
@@ -54,10 +53,9 @@ class NouveauteManager {
                     $class = "impaire";
 
                 $html .= "  <tr class=\"{$class}\">\n";
-                $html .= "      <td>{$ligne['idNouveaute']}</td>\n";
+                $html .= "      <td>{$ligne['idDossier']}</td>\n";
                 $html .= "      <td>{$ligne['titre']}</td>\n";
-                $html .= "      <td>{$ligne['titreDossier']}</td>\n";
-                $html .= "      <td><a href=\"{$_SERVER['PHP_SELF']}?a=ges_nouv&form={$ligne['idNouveaute']}\">modifier</a> | <a href=\"{$_SERVER['PHP_SELF']}?a=ges_nouv&suppr={$ligne['idNouveaute']}\">supprimer</a></td>\n";
+                $html .= "      <td><a href=\"{$_SERVER['PHP_SELF']}?a=ges_dos&form={$ligne['idDossier']}\">modifier</a> | <a href=\"{$_SERVER['PHP_SELF']}?a=ges_nouv&suppr={$ligne['idDossier']}\">supprimer</a></td>\n";
                 $html .= "  </tr>\n";
 
                 $n++;
@@ -77,7 +75,7 @@ class NouveauteManager {
         $bd = new BD_connexion();
         $link = $bd->getConnexion();
 
-        $query = "SELECT COUNT(*) FROM train_nouveautes";
+        $query = "SELECT COUNT(*) FROM train_dossiers";
         $result = mysql_query($query) or die(mysql_error($link));
         $nb = mysql_result($result, 0);
         $bd->closeConnexion();
@@ -89,7 +87,7 @@ class NouveauteManager {
             else
                 $currentPageHTML = $x+1;
 
-            $html .= "<a href=\"index.php?a=ges_nouv&limit={$x}\">{$currentPageHTML}</a> ";
+            $html .= "<a href=\"index.php?a=ges_dos&limit={$x}\">{$currentPageHTML}</a> ";
         }
         $html .= "</p>";
 
@@ -97,7 +95,7 @@ class NouveauteManager {
     }
     
     function supprimerFormulaire() {
-        $html = "<p>Etes-vous sûr de vouloir supprimer cette nouveauté ?</p>";
+        $html = "<p>Etes-vous sûr de vouloir supprimer ce dossier ?</p>";
         $html .= "<p><a href=\"{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&confirm=n\">Non</a>
             / <a href=\"{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&confirm=y\">Oui</a></p>";
 
@@ -109,7 +107,7 @@ class NouveauteManager {
         $link = $db->getConnexion();
         
         // on supprime la promo
-        $query = "DELETE FROM train_nouveautes WHERE idNouveaute=".$_GET['suppr'];
+        $query = "DELETE FROM train_dossiers WHERE idDossier=".$_GET['suppr'];
         mysql_query($query, $link) or die(mysql_error($link));
         
         $db->closeConnexion();

@@ -1,52 +1,45 @@
 <?php
 
 /**
- * Description of nouveautes
+ * Description of dossiers
  *
  * @author gcanu
  */
-class Nouveautes {
+class Dossiers {
 
-    var $idNouveaute;
-    var $titre;
-    var $img;
     var $idDossier;
+    var $titre;
     var $errors;
 
-    function Nouveautes($id = "", $tab = Array()) {
+    function Dossiers($id = "", $tab = Array()) {
         $this->errors = "";
-
+        
         if ($id == "" && count($tab) == 0) {
-            $this->idNouveaute = "";
+            $this->idDossier = "";
             $this->titre = "";
-            $this->img = "";
-            $this->idDossier = 0;
         } 
         elseif ($id == "" && count($tab) > 0) {
-            $this->idNouveaute = $tab["idNouveaute"];
+            $this->idDossier = $tab["idDossier"];
             $this->titre = $tab["titre"];
-            $this->idDossier = $tab["dossier"];
         } 
         elseif ($id != "" && count($tab) == 0) {
             $db = new BD_connexion();
             $link = $db->getConnexion();
-            $query = "SELECT * FROM train_nouveautes WHERE idNouveaute = {$id}";
+            $query = "SELECT * FROM train_dossiers WHERE idDossier = {$id}";
+            echo $query;
             $result = mysql_query($query, $link) or die(mysql_error($link));
-
-            $this->idNouveaute = mysql_result($result, 0, "idNouveaute");
-            $this->titre = mysql_result($result, 0, "titre");
-            $this->img = mysql_result($result, 0, "image");
+            
             $this->idDossier = mysql_result($result, 0, "idDossier");
-
+            $this->titre = mysql_result($result, 0, "titre");
+            
             $db->closeConnexion();
         } 
         elseif ($id != "" && count($tab) > 0) {
-            $this->idNouveaute = $tab["idNouveaute"];
+            $this->idDossier = $tab["idDossier"];
             $this->titre = $tab["titre"];
-            $this->idDossier = $tab["dossier"];
         }
     }
-
+    
     function afficherFormulaire() {
         $html = "";
 
@@ -63,49 +56,13 @@ class Nouveautes {
 
         $html .= "<tr>";
         $html .= "<td>Id</td>";
-        $html .= "<td><input type=\"text\" name=\"idNouveaute\" value=\"{$this->idNouveaute}\" readonly=\"readonly\" /></td>\n";
+        $html .= "<td><input type=\"text\" name=\"idDossier\" value=\"{$this->idDossier}\" readonly=\"readonly\" /></td>\n";
         $html .= "</tr>";
 
         $html .= "<tr>";
         $html .= "<td>Titre</td>";
         $html .= "<td><input type=\"text\" name=\"titre\" value=\"{$this->titre}\" /></td>\n";
         $html .= "</tr>";
-
-        $html .= "<tr>";
-        $html .= "<td>Image</td>";
-        $html .= "<td>";
-        if ($this->img != "")
-            $html .= "<img src=\"images/news/{$this->img}\" style=\"width:60px;\" />";
-        $html .= "<input type=\"file\" name=\"img\" />\n";
-        $html .= "</td>";
-        $html .= "</tr>";
-
-        $html .= "<tr>\n";
-        $html .= "<td>Dossiers</td>\n";
-        $html .= "<td>\n";
-        $html .= "<select name=\"dossier\">";
-        $html .= "<option value=\"0\">Pas de dossier sélectionné</option>";
-        
-        $db = new BD_connexion();
-        $link = $db->getConnexion();
-        $query = "SELECT * FROM train_dossiers";
-        $result = mysql_query($query, $link) or die(mysql_error($link));
-        
-        while ($ligne = mysql_fetch_array($result)) {
-            if($this->idDossier == $ligne["idDossier"])
-                $checked = "selected";
-            else
-                $checked = "";
-
-            $html .= "<option value=\"{$ligne["idDossier"]}\" {$checked}>{$ligne["titre"]}</option>";
-        }
-        
-        $db->closeConnexion();
-        
-        
-
-        $html .= "</td>\n";
-        $html .= "</tr>\n";
 
         $html .= "<tr>";
         $html .= "  <td colspan=\"2\">";
@@ -127,16 +84,9 @@ class Nouveautes {
             $db = new BD_connexion();
             $link = $db->getConnexion();
 
-            // traitement des images
-            $this->img = $this->traiteImage($_FILES['img'], 'images/news/');
-
-            if ($this->idNouveaute == "") { //nouvel enregistrement
-                $query = "INSERT INTO train_nouveautes SET
-                    titre = '{$this->titre}',
-                    idDossier = {$this->idDossier}";
-
-                if ($this->img != null)
-                    $query .= ", image = '{$this->img}'";
+            if ($this->idDossier == "") { //nouvel enregistrement
+                $query = "INSERT INTO train_dossiers
+                    SET titre = '{$this->titre}'";
 
                 mysql_query($query) or die(mysql_error($link));
 
@@ -144,14 +94,10 @@ class Nouveautes {
                 $id = mysql_result($result_id, 0);
             }
             else {
-                $query = "UPDATE train_nouveautes SET
-                    titre = '{$this->titre}',
-                    idDossier = {$this->idDossier}";
+                $query = "UPDATE train_dossiers SET
+                    titre = '{$this->titre}'";
 
-                if ($this->img != null)
-                    $query .= ", image = '{$this->img}'";
-
-                $query .= " WHERE idNouveaute = {$this->idNouveaute}";
+                $query .= " WHERE idDossier = {$this->idDossier}";
 
                 echo $query;
                 mysql_query($query) or die(mysql_error($link));
@@ -189,7 +135,7 @@ class Nouveautes {
     }
 
     function supprimerFormulaire() {
-        $html = "<p>Etes-vous sûr de vouloir supprimer cette nouveauté ?</p>";
+        $html = "<p>Etes-vous sûr de vouloir supprimer ce dossier ?</p>";
         $html .= "<p><a href=\"{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&confirm=n\">Non</a>
             / <a href=\"{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&confirm=y\">Oui</a></p>";
 
@@ -199,21 +145,10 @@ class Nouveautes {
     function supprimer() {
         $db = new BD_connexion();
         $link = $db->getConnexion();
-        $query = "DELETE FROM train_nouveautes WHERE idNouveaute={$this->idNouveaute}";
+        $query = "DELETE FROM train_dossiers WHERE idDossier={$this->idDossier}";
         mysql_query($query) or die(mysql_error($link));
         $db->closeConnexion();
     }
-
-    function traiteImage($f, $path) {
-        if (isset($f['name']) && $f['error'] == UPLOAD_ERR_OK) {
-            $chemin_destination = $path;
-            move_uploaded_file($f['tmp_name'], $chemin_destination . $f['name']);
-            return $f['name'];
-        }
-
-        return null;
-    }
-
 }
 
 ?>
