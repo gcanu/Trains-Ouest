@@ -340,6 +340,11 @@ switch ($a) {
         include("fragments/mg.frg.php");
         break;
 
+    case 'view_dos':
+        array_push($css, "index.css");
+        include("fragments/index.frg.php");
+        break;
+
     case 'view_cat':
         array_push($css, "index.css");
         array_push($css, "catview.css");

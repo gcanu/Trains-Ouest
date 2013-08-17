@@ -49,19 +49,23 @@ while ($row = mysql_fetch_array($result)) {
         $menu_gauche .= "<a href='index.php?a=view_cat&mq=" . $row['idMarque'] . "'>" . $row['marque'] . "</a>";
 }
 
-
+$menu_gauche .= '
+      </div>
+    </div>
+';
 
 /*
  * Affichage des dossier s'il y en a
  */
-$query = "SELECT n.idDossier, d.titre FROM train_nouveautes AS n, train_dossiers AS d WHERE n.idDossier = d.idDossier GROUP BY n.idDossier";
+$query = "SELECT n.idDossier, d.titre FROM train_nouveautes AS n, train_dossiers AS d WHERE n.idDossier = d.idDossier AND d.idDossier > 0 GROUP BY n.idDossier";
 $result = mysql_query($query, $link) or die(mysql_error($link));
 
 if (mysql_num_rows($result) > 0) {
 
     $menu_gauche .= '
-        <div id="cat_wrapper" class="subcat">
-        <div id="cat_title">Dossiers</div>
+        <div class="cat_wrapper">
+          <div class="title">Dossiers</div>
+          <div class="content">
     ';
 
     while ($row = mysql_fetch_array($result)) {
@@ -70,14 +74,11 @@ if (mysql_num_rows($result) > 0) {
     }
 
     $menu_gauche .= '
+          </div>
         </div>
     ';
 }
 
 $db->closeConnexion();
 
-$menu_gauche .= '
-      </div>
-    </div>
-';
 ?>
