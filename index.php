@@ -420,6 +420,11 @@ switch ($a) {
         array_push($css, "boutique.css");
         include("fragments/boutique.frg.php");
         break;
+    case "commander":
+        array_push($css, "index.css");
+        array_push($css, "commander.css");
+        include("fragments/commander.frg.php");
+        break;
     case "cgv":
         array_push($css, "index.css");
         array_push($css, "cgv.css");

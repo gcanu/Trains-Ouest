@@ -92,7 +92,7 @@ class catProd {
 					$url = "images/uploaded/{$produits_tries[$x]['img']}";
 					
 					// redimensionnement de l'image
-					$resultResize = resizeImage($url, 108, 147);
+					$resultResize = resizeImage($url, 172, 80);
 					if($resultResize !== false)
 						$url = $resultResize;
 				}

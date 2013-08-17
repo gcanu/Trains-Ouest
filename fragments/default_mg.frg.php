@@ -9,11 +9,11 @@ $menu_gauche = '
        <div class="title">Boutique</div>
        <div class="content">
          <a href="index.php">Accueil</a>
-         <a href="index.php?a=presentation">Présentation</a>
+         <a href="index.php?a=presentation">Qui sommes nous ?</a>
          <a href="index.php?a=boutique">Boutique</a>
          <a href="index.php?a=commander">Commander</a>
          <a href="index.php?a=contact">Contact</a>
-         <a href="index.php?a=cgv">CGV</a>
+         <a href="index.php?a=cgv">Conditions générales</a>
        </div>
    </div>
 ';
