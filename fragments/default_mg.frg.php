@@ -24,10 +24,10 @@ $menu_gauche .= '
     <div class="content">
 ';
 
-$query = "SELECT * FROM train_categories";
+$query = "SELECT * FROM train_categories ORDER BY ordre";
 $result = mysql_query($query, $link) or die(mysql_error($link));
 while ($row = mysql_fetch_array($result)) {
-    $menu_gauche .= "<a href='index.php?a=view_cat&cat=" . $row['idCat'] . "'>" . $row['intitule'] . "</a>";
+    $menu_gauche .= "<a href='index.php?a=view_cat&cat=" . $row['idCat'] . "'>" . utf8_encode($row['intitule']) . "</a>";
 }
 
 $menu_gauche .= '
@@ -42,7 +42,7 @@ $menu_gauche .= '
  *  affichage des marques
  */
 
-$query = "SELECT * FROM train_marques";
+$query = "SELECT * FROM train_marques ORDER BY ordre";
 $result = mysql_query($query, $link) or die(mysql_error($link));
 while ($row = mysql_fetch_array($result)) {
     if ($row['idMarque'] > 0)
@@ -64,7 +64,7 @@ if (mysql_num_rows($result) > 0) {
 
     $menu_gauche .= '
         <div class="cat_wrapper">
-          <div class="title">Dossiers</div>
+          <div class="title">Nouveautés en précommande</div>
           <div class="content">
     ';
 
