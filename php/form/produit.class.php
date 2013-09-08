@@ -52,7 +52,7 @@ class Produit {
             $this->nom = $tab['nom'];
             $this->marque = $tab['marque'];
             $this->tarif = $tab['tarif'];
-            if($tab['new'] == "new")
+            if(isset($tab['new']) && $tab['new'] == "new")
                 $this->nouveaute = true;
             else
                 $this->nouveaute = false;
@@ -108,7 +108,7 @@ class Produit {
             $this->marque = $tab['marque'];
             $this->tarif = $tab['tarif'];
             
-            if($tab['new'] == "new")
+            if(isset($tab['new']) && $tab['new'] == "new")
                 $this->nouveaute = true;
             else
                 $this->nouveaute = false;

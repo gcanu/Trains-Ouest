@@ -34,26 +34,12 @@ class AfficheProduit extends Produit {
         $html .= "  <div id=\"descriptif_produit\">";
 
         if ($prix == $promo)
-            $html .= "      <p id=\"tarif\"><span>à partir de </span>{$prix_formate}</p>";
+            $html .= "      <p id=\"tarif\">{$prix_formate}</p>";
         else {
-            $html .= "      <p id=\"tarif\"><span>à partir de </span>{$promo_formate}</p>";
+            $html .= "      <p id=\"tarif\">{$promo_formate}</p>";
             $valeurPromo = $outils->getPromo($this->idProduit);
             $html .= "      <p class=\"ancien_tarif\"><span>- " . $valeurPromo['valeur'] . "% </span>{$prix_formate}</p>";
         }
-
-        $html .= "      <p class=\"help help_caddie\">cliquez sur le caddie pour précommander le produit correspondant</p>";
-        $html .= "      <p id=\"listeTarif\">";
-        
-        $prix = $outils->getPrix($this->idProduit, false, true);
-        $promo = $outils->getPrix($this->idProduit, true, true);
-
-        if ($prix != $promo)
-            $prix_html = "{$promo} <span class=\"ancien_tarif_liste\">{$prix}</span> ";
-        else
-            $prix_html = $prix;
-
-        $onClick = "i_panier.displayQtyChooser({$this->idProduit})";
-        $html .= "{$prix_html}<img src=\"images/cart.png\" onClick=\"{$onClick}\" /><br/>";
         
         $html .= "      </p>";
         $html .= "      <div id=\"options_produit\">";

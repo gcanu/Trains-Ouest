@@ -103,7 +103,7 @@ class catProd {
                 $html .= "      </div>\n";
 
                 $html .= "      <div class=\"description\">\n";
-                $html .= "          à partir de " . $this->outils->formatPrix($produits_tries[$x]['tarif']);
+                $html .= $this->outils->formatPrix($produits_tries[$x]['tarif']);
                 $html .= "      </div>\n";
                 $html .= "      <div class=\"zoom\"></div>";
                 $html .= "  </div>\n";

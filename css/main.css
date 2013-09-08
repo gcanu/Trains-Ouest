@@ -15,7 +15,7 @@ a {
 }
 
 #bg {
-    background-image: url(../images/fond.jpg);
+    background-image: url(../images/fond.png);
     background-repeat: no-repeat;
     background-position: top center;
     background-attachment: fixed; 
@@ -195,7 +195,6 @@ a {
 }
 
 .info, .info img {
-    max-height: 582px;
     max-width: 729px;
 }
 

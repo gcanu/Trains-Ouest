@@ -10,7 +10,7 @@ $menu_gauche = '
        <div class="content">
          <a href="index.php">Accueil</a>
          <a href="index.php?a=presentation">Qui sommes nous ?</a>
-         <a href="index.php?a=boutique">Boutique</a>
+         <a href="index.php?a=boutique">Magasin</a>
          <a href="index.php?a=commander">Commander</a>
          <a href="index.php?a=contact">Contact</a>
          <a href="index.php?a=cgv">Conditions générales</a>
