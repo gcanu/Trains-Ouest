@@ -74,7 +74,7 @@ class Produit {
             $this->idProduit = mysql_result($result, 0, 'idProduit');
             $this->refProduit = mysql_result($result, 0, 'refProduit');
             $this->nom = mysql_result($result, 0, 'nom');
-            $this->marque = mysql_result($result, 0, 'marque');
+            $this->marque = mysql_result($result, 0, 'idMarque');
             $this->tarif = mysql_result($result, 0, 'tarif');
             
             // verifier si la base retourne bien un type booléen
@@ -262,6 +262,10 @@ class Produit {
 
         $html .= "<option value=\"0\">Choisissez une cat&eacute;gorie</option>\n";
         while ($ligne = mysql_fetch_array($result)) {
+            $selected = "";
+            if ($this->idCat == $ligne['idCat'])
+                $selected = "selected=\"selected\"";
+
             $html .= "<option value=\"0\"></option>";
 
             $requete = "SELECT * FROM train_categories WHERE idCatMere = {$ligne['idCat']}";
@@ -271,7 +275,7 @@ class Produit {
             $db->closeConnexion();
 
             if (mysql_num_rows($result2) == 0) {
-                $html .= "<option value=\"{$ligne['idCat']}\">-- " . utf8_encode($ligne['intitule']) . " --</option>";
+                $html .= "<option value=\"{$ligne['idCat']}\" {$selected}>-- " . utf8_encode($ligne['intitule']) . " --</option>";
             } else {
                 $html .= "<option value=\"0\">-- " . utf8_encode($ligne['intitule']) . " --</option>";
                 while ($ligne2 = mysql_fetch_array($result2)) {
@@ -316,7 +320,7 @@ class Produit {
                 $query = "INSERT INTO train_produits
                     SET refProduit = '{$this->refProduit}',
                     nom = '" . addslashes($this->nom) . "',
-                    marque = '" .addslashes($this->marque). "',
+                    idMarque = {$this->marque},
                     tarif = '{$this->tarif}',
                     nouveaute = ".($this->nouveaute?1:0).",
                     etat = ".$this->etat.",";
@@ -345,7 +349,7 @@ class Produit {
                 $query = "UPDATE train_produits SET
                     refProduit = '{$this->refProduit}',
                     nom = '" . addslashes($this->nom) . "',
-                    marque = '" . addslashes($this->marque) . "',
+                    idMarque = {$this->marque},
                     tarif = '{$this->tarif}',
                     nouveaute = ".($this->nouveaute?1:0).",
                     etat = ".$this->etat.",";

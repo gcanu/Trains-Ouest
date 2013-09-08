@@ -56,6 +56,16 @@ a {
     top: -16px;
 }
 
+#logos {
+    height: 40px;
+    width: 100%;
+    text-align: center;
+}
+
+#logos img {
+    height: 25px;
+}
+
 #panier {
     position: absolute;
     background-image: url(../images/fond_panier.png);
