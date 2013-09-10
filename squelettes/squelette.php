@@ -34,16 +34,7 @@
                     <a href="index.php"><div id="banner"></div></a>
                 </div>
                 <div id="logos">
-                    <img src="images/logos/electrotren.png" />
-                    <img src="images/logos/epm.png" />
-                    <img src="images/logos/faller.png" />
-                    <img src="images/logos/heki.png" />
-                    <img src="images/logos/jouef.png" />
-                    <img src="images/logos/mkd.png" />
-                    <img src="images/logos/peco.png" />
-                    <img src="images/logos/preiser.png" />
-                    <img src="images/logos/ree.png" />
-                    <img src="images/logos/roco.png" />
+                    <img src="images/logos/logos.jpg" />
                 </div>
                 <div id="main_wrapper" class="clearfix">
                     <div id="content_wrapper">

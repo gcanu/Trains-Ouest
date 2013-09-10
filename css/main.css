@@ -60,10 +60,11 @@ a {
     height: 40px;
     width: 100%;
     text-align: center;
+    margin-bottom: 15px;
 }
 
 #logos img {
-    height: 25px;
+    height: 40px;
 }
 
 #panier {
