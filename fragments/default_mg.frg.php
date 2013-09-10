@@ -3,20 +3,33 @@
 $db = new BD_connexion();
 $link = $db->getConnexion();
 
-
 $menu_gauche = '
-   <div class="cat_wrapper">
-       <div class="title">Boutique</div>
-       <div class="content">
-         <a href="index.php">Accueil</a>
-         <a href="index.php?a=presentation">Qui sommes nous ?</a>
-         <a href="index.php?a=boutique">Magasin</a>
-         <a href="index.php?a=commander">Commander</a>
-         <a href="index.php?a=contact">Contact</a>
-         <a href="index.php?a=cgv">Conditions générales</a>
-       </div>
-   </div>
+  <div class="cat_wrapper">
+    <div class="title">Boutique</div>
+    <div class="content">
+      <a href="index.php">Accueil</a>
+      <a href="index.php?a=presentation">Qui sommes nous ?</a>
+      <a href="index.php?a=boutique">Magasin</a>
+      <a href="index.php?a=commander">Commander</a>
+      <a href="index.php?a=contact">Contact</a>
+      <a href="index.php?a=cgv">Conditions générales</a>
+    </div>
+  </div>
 ';
+
+
+$query = "SELECT * FROM train_promotions";
+$result = mysql_query($query, $link) or die(mysql_error($link));
+
+if(mysql_num_rows($result) > 0) {
+  $menu_gauche .= '
+    <div class="cat_wrapper emph">
+      <div class="title">
+        <a href="index.php?a=promos">Promotions</a>
+      </div>
+    </div>
+  ';
+}
 
 $menu_gauche .= '
   <div class="cat_wrapper">

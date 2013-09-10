@@ -14,6 +14,10 @@
     margin: 5px 0 15px 0;
 }
 
+.emph {
+    background: #C00;
+}
+
 .cat_wrapper .title {
     background: none;
     font-size: 18px;
@@ -35,6 +39,12 @@
     font: normal 14px Century Gothic;
     margin-left: 15px;
     color: black;
+}
+
+.emph a {
+    color: white;
+    font-size: 18px;
+    margin: 0;
 }
 
 .accueil {

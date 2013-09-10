@@ -377,6 +377,18 @@ switch ($a) {
         include("fragments/produit.frg.php");
         break;
 
+    case 'promos':
+        array_push($css, "index.css");
+        array_push($css, "catview.css");
+        array_push($css, "promotion.css");
+        include("fragments/default_mg.frg.php");
+        include("fragments/default_md.frg.php");
+        include("fragments/default_bas.frg.php");
+
+        $promotion = new Promotion();
+        $contenu = $promotion->afficherPromotions();
+        break;
+
     case 'connexion':
         // TODO : CSS à revoir
         $contenu .= '<h1>Identification</h1>';

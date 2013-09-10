@@ -69,6 +69,8 @@ class Promotion {
     }
     
     function afficherPromotions() {
+        $outils = new Outils();
+
         $html = "";
         
         $html .= "<h1>Promotions</h1>";
@@ -87,6 +89,9 @@ class Promotion {
             $img = $ligne['img'];
             $cat = $ligne['intitule'];
             $idProd = $ligne['idProduit'];
+
+            $prix = $outils->getPrix($idProd, false, true);
+            $prix_promo = $outils->getPrix($idProd, true, true);
             
             $html .= "<a href=\"index.php?a=prod&idProd={$idProd}\">\n";
             $html .= "  <div class=\"produit\">\n";
@@ -94,7 +99,7 @@ class Promotion {
             $html .= "      <div class=\"img_produit_ctn\">\n";
             $html .= "          <img class=\"img_produit\" src=\"images/uploaded/{$img}\"/>\n";
             $html .= "      </div>\n";
-            $html .= "      <div class=\"description\">en promo : - {$promo}%</div>\n";
+            $html .= "      <div class=\"description\">{$prix_promo} au lieu de {$prix}</div>\n";
             $html .= "      <div class=\"zoom\"></div>\n";
             $html .= "  </div>\n";
             $html .= "</a>\n";
