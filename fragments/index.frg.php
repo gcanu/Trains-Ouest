@@ -15,7 +15,7 @@ else
 
 $db = new BD_connexion();
 $link = $db->getConnexion();
-$query = "SELECT * FROM train_nouveautes WHERE idDossier = ".$id;
+$query = "SELECT * FROM train_nouveautes WHERE idDossier = ".$id." ORDER BY idNouveaute DESC";
 
 $result = mysql_query($query, $link) or die(mysql_error($link));
 
