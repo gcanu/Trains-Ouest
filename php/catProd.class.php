@@ -98,7 +98,7 @@ class catProd {
 					if($resultResize !== false) {
 						$url = $resultResize["filename"];
                         $styleSize = "width:".$resultResize["width"]."px;";
-                        $styleSize .= "height:".$resultResize["height"]."px;";
+                        //$styleSize .= "height:".$resultResize["height"]."px;";
                     }
 				}
 				else
