@@ -90,16 +90,21 @@ class catProd {
 
 				if ($produits_tries[$x]['img'] != "") {
 					$url = "images/uploaded/{$produits_tries[$x]['img']}";
-					
+
 					// redimensionnement de l'image
 					$resultResize = resizeImage($url, 172, 80);
-					if($resultResize !== false)
-						$url = $resultResize;
+                    $styleSize = "";
+
+					if($resultResize !== false) {
+						$url = $resultResize["filename"];
+                        $styleSize = "width:".$resultResize["width"]."px;";
+                        $styleSize .= "height:".$resultResize["height"]."px;";
+                    }
 				}
 				else
 					$url = "images/noimg.png";
 					
-                $html .= "      <div class=\"img_produit_ctn\" style=\"background-image: url({$url});\">\n";
+                $html .= "      <div class=\"img_produit_ctn\" style=\"background-image: url({$url});{$styleSize}\">\n";
                 $html .= "      </div>\n";
 
                 $html .= "      <div class=\"description\">\n";

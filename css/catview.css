@@ -67,6 +67,7 @@ html >body .produit {
     height: 80px;
     background-color: white;
     margin: 2px auto 2px auto;
+    background-repeat: no-repeat;
 }
 
 .img_produit {   

@@ -2,7 +2,7 @@
 
 function resizeImage($imageName, $width=0, $height=0) {
 
-	if ($width > 0 || $height > 0) {
+	if ($width > 0 && $height > 0) {
 		$matches = array();
 		preg_match("/([^\/]+)\.([A-Za-z]+)$/", $imageName, $matches);
 
@@ -34,17 +34,23 @@ function resizeImage($imageName, $width=0, $height=0) {
 				// calcul du ratio de l'image
 				$imageWidth = imagesx($image);
 				$imageHeight = imagesy($image);
-				$ratio = $imageHeight / $imageWidth;
+				$ratio = $imageWidth / $imageHeight;
+				$idealRatio = $width / $height;
 
-				if ($width > 0)
+				if($ratio == $idealRatio) {
 					$imageResizedWidth = $width;
-				else
-					$imageResizedWidth = round($height / $ratio);
-
-				if ($height > 0)
 					$imageResizedHeight = $height;
-				else
-					$imageResizedHeight = round($width * $ratio);
+				}
+				elseif ($ratio > $idealRatio) {
+					// transfo sur la largeur
+					$imageResizedWidth = $width;
+					$imageResizedHeight = round($imageResizedWidth / $ratio);
+				}
+				elseif ($ratio < $idealRatio) {
+					// transfo sur la hauteur
+					$imageResizedHeight = $height;
+					$imageResizedWidth = round($imageResizedHeight * $ratio);
+				}
 					
 				$newFileName = $path.$fileName."_".$imageResizedWidth."x".$imageResizedHeight.".".$extension;
 		
@@ -61,20 +67,17 @@ function resizeImage($imageName, $width=0, $height=0) {
 					switch (strtolower($extension)) {
 						case "jpg":
 							imagejpeg($resizedImage, $newFileName);
-							return $newFileName;
 							break;
 						case "png":
 							imagepng($resizedImage, $newFileName);
-							return $newFileName;
 							break;
 						case "gif":
 							imagegif($resizedImage, $newFileName);
-							return $newFileName;
 							break;
 					}
 				}
-				else
-					return $newFileName;
+
+				return array("filename" => $newFileName, "width" => $imageResizedWidth, "height" => $imageResizedHeight);
 			}
 		}
 	}
