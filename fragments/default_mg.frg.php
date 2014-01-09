@@ -70,7 +70,7 @@ $menu_gauche .= '
 /*
  * Affichage des dossier s'il y en a
  */
-$query = "SELECT n.idDossier, d.titre FROM train_nouveautes AS n, train_dossiers AS d WHERE n.idDossier = d.idDossier AND d.idDossier > 0 GROUP BY n.idDossier";
+$query = "SELECT n.idDossier, d.titre FROM train_nouveautes AS n, train_dossiers AS d WHERE n.idDossier = d.idDossier AND d.idDossier > 0 GROUP BY n.idDossier ORDER BY d.titre ASC";
 $result = mysql_query($query, $link) or die(mysql_error($link));
 
 if (mysql_num_rows($result) > 0) {
